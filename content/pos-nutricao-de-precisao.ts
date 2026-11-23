@@ -79,7 +79,7 @@ export const posNutricaoDePrecisao: Course = {
   },
   modules: {
     title: "O que você vai aprender",
-    intro: "Da base bioquímica à prática no consultório, em cinco grandes eixos. A grade completa você recebe da nossa equipe.",
+    intro: "Da base bioquímica à prática no consultório, em seis grandes eixos. A grade completa você recebe da nossa equipe.",
     groups: [
       {
         icon: "book",
@@ -126,6 +126,16 @@ export const posNutricaoDePrecisao: Course = {
           "Distúrbios do comportamento e ansiedade",
           "Cardiologia",
           "Doenças ósseo-metabólicas e detoxificação",
+        ],
+      },
+      {
+        icon: "lab",
+        title: "Prescrição e suplementação",
+        summary: "Suplementos, ortomoleculares e fitoterápicos com dose, forma e segurança.",
+        items: [
+          "Prescrição de suplementos e compostos ortomoleculares",
+          "Prescrição de fitoterápicos em todas as formas farmacêuticas",
+          "Formulação magistral e escolha da forma farmacêutica",
         ],
       },
       {

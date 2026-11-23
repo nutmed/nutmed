@@ -552,7 +552,7 @@ a {
   width: 50px;
   height: 50px;
   border-radius: 14px;
-  background: var(--nm-bg-tint);
+  background: #e6e2f8;
   color: var(--nm-primary);
 }
 .axis h3 {
