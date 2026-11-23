@@ -1,5 +1,19 @@
-// Endereço público do subdomínio das LPs (canonical, Open Graph, sitemap).
-export const SITE_URL = (process.env.NEXT_PUBLIC_SITE_URL || "https://conteudo.nutmed.com.br").replace(/\/$/, "");
+// Endereço público das LPs (canonical, Open Graph, sitemap, robots, JSON-LD), nesta ordem:
+// 1) NEXT_PUBLIC_SITE_URL, quando cadastrada (domínio próprio);
+// 2) domínio de produção que a Vercel define sozinha (VERCEL_PROJECT_PRODUCTION_URL, ex.: nutmed.vercel.app);
+// 3) endereço do deploy atual na Vercel (VERCEL_URL);
+// 4) domínio definitivo.
+function resolveSiteUrl(): string {
+  const env = process.env;
+  const url =
+    env.NEXT_PUBLIC_SITE_URL ||
+    (env.VERCEL_PROJECT_PRODUCTION_URL && `https://${env.VERCEL_PROJECT_PRODUCTION_URL}`) ||
+    (env.VERCEL_URL && `https://${env.VERCEL_URL}`) ||
+    "https://conteudo.nutmed.com.br";
+  return url.replace(/\/$/, "");
+}
+
+export const SITE_URL = resolveSiteUrl();
 
 export const ORGANIZATION = {
   "@type": "EducationalOrganization",
