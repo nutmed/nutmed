@@ -1,6 +1,6 @@
 # NutMed · Landing pages
 
-Landing pages de captação de leads da NutMed (Next.js 16, App Router), feitas sobre a base visual do template Edplus com a identidade da NutMed. Deploy na Vercel, no subdomínio `materiais.nutmed.com.br`.
+Landing pages de captação de leads da NutMed (Next.js 16, App Router), feitas sobre a base visual do template Edplus com a identidade da NutMed. Deploy na Vercel, no subdomínio `conteudo.nutmed.com.br`.
 
 ## Rodar localmente
 

@@ -1,5 +1,5 @@
 // Endereço público do subdomínio das LPs (canonical, Open Graph, sitemap).
-export const SITE_URL = (process.env.NEXT_PUBLIC_SITE_URL || "https://materiais.nutmed.com.br").replace(/\/$/, "");
+export const SITE_URL = (process.env.NEXT_PUBLIC_SITE_URL || "https://conteudo.nutmed.com.br").replace(/\/$/, "");
 
 export const ORGANIZATION = {
   "@type": "EducationalOrganization",
