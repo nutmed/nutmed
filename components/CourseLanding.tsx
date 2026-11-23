@@ -251,7 +251,7 @@ export default function CourseLanding({ course, campaign, showPending = false }:
             </div>
             <div className="text-center mt-5">
               <a href="#inscricao" className="btn-nm btn-nm--accent">
-                Quero receber a grade completa <Icon name="arrow" size={18} />
+                Quero saber mais <Icon name="arrow" size={18} />
               </a>
             </div>
           </div>
