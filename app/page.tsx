@@ -1,6 +1,6 @@
 import { redirect } from "next/navigation";
 
-// A raiz do subdomínio não tem conteúdo próprio: leva para o site principal.
+// A raiz do subdomínio não tem conteúdo próprio: leva para a LP principal (307, temporário).
 export default function Home() {
-  redirect("https://nutmed.com.br");
+  redirect("/pos-nutricao-de-precisao");
 }
