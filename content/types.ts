@@ -25,7 +25,10 @@ export type IconName =
   | "dna"
   | "check"
   | "arrow"
-  | "star";
+  | "star"
+  | "phone"
+  | "whatsapp"
+  | "globe";
 
 export type Campaign = {
   /** Vira tag no RD Station e parâmetro no dataLayer, ex.: "black-nutmed-2026" */

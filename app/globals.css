@@ -440,6 +440,36 @@ a {
 .lp-footer a {
   color: #fff;
 }
+.lp-contacts {
+  list-style: none;
+  margin: 0 0 14px;
+  padding: 0;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-end;
+  gap: 10px 22px;
+  font-size: 14px;
+}
+.lp-contacts a {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  color: #fff;
+  text-decoration: none;
+}
+.lp-contacts a:hover {
+  color: var(--nm-accent);
+}
+.lp-contacts svg {
+  flex: none;
+  color: var(--nm-accent);
+}
+@media (max-width: 767px) {
+  .lp-contacts {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+}
 
 /* Marcações de pendência (somem com NEXT_PUBLIC_SHOW_PENDING=false) */
 .pending-note {

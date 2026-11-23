@@ -354,13 +354,43 @@ export default function CourseLanding({ course, campaign, showPending = false }:
       <footer className="lp-footer">
         <div className="container">
           <div className="row g-4 align-items-center">
-            <div className="col-md-4">
+            <div className="col-md-3">
               <Image src="/img/nutmed-logo-light.svg" alt="NutMed" width={96} height={60} />
             </div>
-            <div className="col-md-8 text-md-end">
+            <div className="col-md-9 text-md-end">
+              <ul className="lp-contacts">
+                <li>
+                  <a
+                    href="https://wa.me/5521995432570"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    data-cta="footer-whatsapp"
+                  >
+                    <Icon name="whatsapp" size={18} /> (21) 99543-2570
+                  </a>
+                </li>
+                <li>
+                  <a href="tel:+552122404217" data-cta="footer-telefone">
+                    <Icon name="phone" size={18} /> (21) 2240-4217
+                  </a>
+                </li>
+                <li>
+                  <a href="https://nutmed.com.br" target="_blank" rel="noopener noreferrer" data-cta="footer-site">
+                    <Icon name="globe" size={18} /> nutmed.com.br
+                  </a>
+                </li>
+                <li>
+                  <a
+                    href="https://www.google.com/maps/search/?api=1&query=Rua+da+Quitanda,+187,+Centro,+Rio+de+Janeiro+RJ"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    data-cta="footer-endereco"
+                  >
+                    <Icon name="pin" size={18} /> Rua da Quitanda, 187 · Centro · Rio de Janeiro (RJ)
+                  </a>
+                </li>
+              </ul>
               <p>
-                Rua da Quitanda, 187 · Centro · Rio de Janeiro (RJ) · (21) 2240-4217 · (21) 99543-2570
-                <br />
                 PRONUTRI JFC Treinamento Profissional Ltda · CNPJ 07.704.449/0001-80 ·{" "}
                 <a href="https://nutmed.com.br/politica-de-privacidade/" target="_blank" rel="noopener noreferrer">
                   Política de Privacidade
