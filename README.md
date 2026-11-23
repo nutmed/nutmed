@@ -36,6 +36,8 @@ Sem `RD_STATION_API_KEY`, o formulário funciona normalmente e o lead só não �
 - `opengraph-image.tsx` chama `courseOgImage(course)` (`lib/og.tsx`). Ele gera um PNG 1200x630 com logo, nome do curso e destaque, tudo centralizado.
 - Antes de subir, abra `/<novo-slug>/opengraph-image` e confira a imagem e o título. Veja o checklist completo em `CLAUDE.md`.
 
+**Favicon:** todas as LPs usam o favicon oficial da NutMed (elipse lilás/violeta com "NutMed", igual ao nutmed.com.br), servido por `app/icon.svg` e `app/apple-icon.png`. Não adicione outro favicon por LP.
+
 ## Integrações
 
 **RD Station Marketing.** O formulário envia para `/api/lead`, que chama `POST https://api.rd.services/platform/conversions` com a chave pública em `RD_STATION_API_KEY`. Cada LP usa seu próprio `conversion_identifier` (ex.: `lp-pos-nutricao-de-precisao-2027`) e envia nome, e-mail, celular (+55), tags (`lp`, slug do curso, `perfil-<nutricionista|formando|estudante>`), consentimento LGPD e UTMs.

@@ -22,6 +22,10 @@ Antes de subir, confira:
 - [ ] O código-fonte da página tem `<title>`, `meta description`, `link rel="canonical"`, `og:title`, `og:image` e `twitter:card` corretos.
 - [ ] O slug novo está na lista de `app/sitemap.ts`.
 
+### Favicon oficial da NutMed (obrigatório)
+
+Toda LP usa o favicon oficial do nutmed.com.br (a elipse lilás/violeta com "NutMed"), nunca o quadrado violeta com "N". Ele vem de `app/icon.svg` e `app/apple-icon.png` (180x180, fundo branco), que o Next aplica a todas as rotas. Não crie `favicon.ico`, ícone por LP nem `icons` no `metadata`. Antes de subir, confira que `/icon.svg` mostra a elipse e que o `<head>` da LP tem `link rel="icon"` apontando para ele.
+
 ### Outras regras
 
 - Textos em pt-BR, com linguagem neutra de gênero ("nutricionistas").
