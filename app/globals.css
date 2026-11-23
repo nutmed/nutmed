@@ -1786,22 +1786,14 @@ a {
     font-size: 14.5px;
   }
 
-  /* Conteúdo e diferenciais: cards lado a lado, arrastando para o lado */
+  /* Diferenciais: um card abaixo do outro, largura total, sem rolagem lateral */
   .scroll-row {
-    flex-wrap: nowrap;
-    overflow-x: auto;
-    scroll-snap-type: x mandatory;
-    scrollbar-width: none;
-    padding-bottom: 6px;
-    justify-content: flex-start !important;
-  }
-  .scroll-row::-webkit-scrollbar {
-    display: none;
+    flex-wrap: wrap;
+    overflow-x: visible;
   }
   .scroll-row > * {
-    flex: 0 0 78%;
-    max-width: 78%;
-    scroll-snap-align: start;
+    flex: 0 0 100%;
+    max-width: 100%;
   }
   .sky .section-title p {
     display: none;
