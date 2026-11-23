@@ -13,6 +13,12 @@ export const posNutricaoDePrecisao: Course = {
     description:
       "Pós-graduação 3 em 1 para nutricionistas: 460h, turma 2027 com início em 13/03. Prescreva suplementos e fitoterápicos com segurança. Reconhecida pelo MEC.",
   },
+  og: {
+    kicker: "Pós-graduação · Turma 2027",
+    title: "Pós em Nutrição de Precisão",
+    highlight: "Funcional e Fitoterapia",
+    footer: "Modalidade 3 em 1 · 460h · Reconhecida pelo MEC",
+  },
   tape: "Inscrições abertas · Turma 2027 · Vagas limitadas",
   // Black NutMed: sai do ar sozinha depois de endsAt (data a confirmar com a NutMed).
   campaign: {

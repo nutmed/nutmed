@@ -50,6 +50,11 @@ export type Course = {
   /** Identificador da conversão no RD Station (aparece no histórico do lead). */
   rdConversionId: string;
   seo: { title: string; description: string };
+  /**
+   * Textos da imagem de compartilhamento (WhatsApp/redes).
+   * Campos vazios usam o hero (eyebrow, title, highlight, início e selos).
+   */
+  og?: { kicker?: string; title?: string; highlight?: string; footer?: string };
   /** Texto das fitas cruzadas do CTA final quando não há campanha no ar. */
   tape: string;
   /** Campanha com data de fim (ex.: Black NutMed). Depois de endsAt a LP volta sozinha para a versão fixa. */

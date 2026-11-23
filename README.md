@@ -26,8 +26,15 @@ Sem `RD_STATION_API_KEY`, o formulário funciona normalmente e o lead só não �
 
 ### Nova LP
 
-1. Copie `content/pos-nutricao-de-precisao.ts` para `content/<novo-slug>.ts` e troque o conteúdo (inclusive `rdConversionId`).
-2. Copie `app/pos-nutricao-de-precisao/` para `app/<novo-slug>/` e aponte o import para o novo conteúdo.
+1. Copie `content/pos-nutricao-de-precisao.ts` para `content/<novo-slug>.ts` e troque o conteúdo (inclusive `rdConversionId`, `seo` e `og`).
+2. Copie `app/pos-nutricao-de-precisao/` para `app/<novo-slug>/` (com `page.tsx` **e** `opengraph-image.tsx`) e aponte os imports para o novo conteúdo.
+3. Inclua o novo curso na lista de `app/sitemap.ts`.
+
+**Open Graph é obrigatório em toda LP** (é o que aparece quando o link é compartilhado no WhatsApp e nas redes sociais em geral):
+
+- `page.tsx` usa `export const metadata = buildCourseMetadata(course)` (`lib/metadata.ts`).
+- `opengraph-image.tsx` chama `courseOgImage(course)` (`lib/og.tsx`). Ele gera um PNG 1200x630 com logo, nome do curso e destaque, tudo centralizado.
+- Antes de subir, abra `/<novo-slug>/opengraph-image` e confira a imagem e o título. Veja o checklist completo em `CLAUDE.md`.
 
 ## Integrações
 

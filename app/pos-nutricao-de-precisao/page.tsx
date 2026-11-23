@@ -1,28 +1,11 @@
-import type { Metadata } from "next";
 import CourseLanding from "@/components/CourseLanding";
 import { activeCampaign } from "@/lib/campaign";
+import { buildCourseMetadata } from "@/lib/metadata";
 import { ORGANIZATION, SITE_URL } from "@/lib/site";
 import { posNutricaoDePrecisao as course } from "@/content/pos-nutricao-de-precisao";
 
-// A imagem de compartilhamento vem de ./opengraph-image.tsx (Next inclui sozinho em og:image e twitter:image).
-export const metadata: Metadata = {
-  title: course.seo.title,
-  description: course.seo.description,
-  alternates: { canonical: `/${course.slug}` },
-  openGraph: {
-    title: course.seo.title,
-    description: course.seo.description,
-    url: `/${course.slug}`,
-    siteName: "NutMed",
-    locale: "pt_BR",
-    type: "website",
-  },
-  twitter: {
-    card: "summary_large_image",
-    title: course.seo.title,
-    description: course.seo.description,
-  },
-};
+// Título, descrição, canonical, Open Graph e Twitter. A imagem vem de ./opengraph-image.tsx.
+export const metadata = buildCourseMetadata(course);
 
 // Dados estruturados (schema.org) para o Google entender que a página é um curso.
 const jsonLd = {
