@@ -11,7 +11,7 @@ export const posNutricaoDePrecisao: Course = {
   seo: {
     title: "Pós em Nutrição de Precisão Funcional e Fitoterapia | NutMed",
     description:
-      "Pós-graduação presencial 3 em 1 para nutricionistas: 460h, turma 2027 com início em 13/03. Prescreva suplementos e fitoterápicos com segurança. Reconhecida pelo MEC.",
+      "Pós-graduação 3 em 1 para nutricionistas: 460h, turma 2027 com início em 13/03. Prescreva suplementos e fitoterápicos com segurança. Reconhecida pelo MEC.",
   },
   tape: "Inscrições abertas · Turma 2027 · Vagas limitadas",
   // Black NutMed: sai do ar sozinha depois de endsAt (data a confirmar com a NutMed).

@@ -274,7 +274,7 @@ export default function CourseLanding({ course, campaign, showPending = false }:
                 </div>
                 {featured.image && (
                   <div className="glass-card__photo">
-                    <Image src={featured.image} alt="" fill sizes="(min-width: 992px) 520px, 90vw" />
+                    <Image src={featured.image} alt={featured.title} fill sizes="(min-width: 992px) 520px, 90vw" />
                   </div>
                 )}
               </div>

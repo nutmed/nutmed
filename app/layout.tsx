@@ -2,6 +2,7 @@ import type { Metadata, Viewport } from "next";
 import Script from "next/script";
 import { Montserrat, Open_Sans } from "next/font/google";
 
+import { SITE_URL } from "@/lib/site";
 import "./bootstrap.min.css";
 import "./globals.css";
 
@@ -22,14 +23,17 @@ const openSans = Open_Sans({
 const GTM_ID = process.env.NEXT_PUBLIC_GTM_ID;
 
 export const metadata: Metadata = {
-  metadataBase: new URL(process.env.NEXT_PUBLIC_SITE_URL || "https://conteudo.nutmed.com.br"),
+  metadataBase: new URL(SITE_URL),
   title: "NutMed | Cursos de Nutrição",
   description: "Pós-graduação, atualização e preparatórios para nutricionistas.",
-  icons: { icon: "/img/nutmed-logo.svg" },
+  applicationName: "NutMed",
+  robots: { index: true, follow: true },
+  // Evita que o iOS transforme números (CNPJ, datas) em links de telefone.
+  formatDetection: { telephone: false },
 };
 
 export const viewport: Viewport = {
-  themeColor: "#4F56A7",
+  themeColor: "#4a2f9a",
 };
 
 export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
