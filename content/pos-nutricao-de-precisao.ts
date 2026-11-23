@@ -163,7 +163,7 @@ export const posNutricaoDePrecisao: Course = {
     {
       icon: "badge",
       title: "Reconhecida pelo MEC",
-      text: "Pós-graduação lato sensu NutMed + EnsinE, com certificado registrado.",
+      text: "Pós-graduação lato sensu da NutMed, com certificado registrado.",
     },
   ],
   modes: [

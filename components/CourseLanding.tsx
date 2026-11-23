@@ -83,7 +83,7 @@ export default function CourseLanding({ course, campaign, showPending = false }:
           <div className="container position-relative">
             <div className="row align-items-center g-4 g-lg-5">
               <div className="col-lg-7">
-                <p className="cobrand rise">NutMed · EnsinE Faculdade</p>
+                <p className="cobrand rise">NutMed · Reconhecida pelo MEC</p>
                 <p className="hero-kicker rise" style={{ animationDelay: ".05s" }}>
                   Pós-graduação <span>2027</span>
                 </p>
