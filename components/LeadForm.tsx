@@ -100,8 +100,8 @@ export default function LeadForm({ formId, courseSlug, courseName, conversionId,
       <div className={`lead-card ${dark ? "lead-card--dark" : ""}`} role="status">
         <div className="lead-success">
           <Icon name="check" size={44} />
-          <h3>Recebemos seus dados!</h3>
-          <p>Nossa equipe vai falar com você pelo WhatsApp para tirar dúvidas e garantir sua vaga na Turma 2027.</p>
+          <h3>Obrigado!</h3>
+          <p>Recebemos seu interesse. Em breve, nossa equipe comercial vai entrar em contato com você para tirar suas dúvidas.</p>
         </div>
       </div>
     );
