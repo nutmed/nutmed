@@ -1,23 +1,30 @@
 import type { Metadata, Viewport } from "next";
 import Script from "next/script";
-import { Montserrat, Open_Sans } from "next/font/google";
+import localFont from "next/font/local";
 
 import { SITE_URL } from "@/lib/site";
 import "./bootstrap.min.css";
 import "./globals.css";
 
-const montserrat = Montserrat({
-  subsets: ["latin"],
-  weight: ["300", "400", "500", "600", "700", "800"],
+// Fontes hospedadas no próprio projeto (app/fonts, licença OFL). Antes vinham de
+// next/font/google, que baixa do Google a cada build e quebrava o deploy na Vercel.
+// Arquivos variáveis (eixo wght), subset latin: cobre todo o português.
+const montserrat = localFont({
+  src: "./fonts/montserrat-latin-wght.woff2",
+  weight: "300 800",
+  style: "normal",
   variable: "--font-title",
   display: "swap",
+  fallback: ["Arial", "sans-serif"],
 });
 
-const openSans = Open_Sans({
-  subsets: ["latin"],
-  weight: ["400", "500", "600", "700"],
+const openSans = localFont({
+  src: "./fonts/open-sans-latin-wght.woff2",
+  weight: "400 700",
+  style: "normal",
   variable: "--font-body",
   display: "swap",
+  fallback: ["Arial", "sans-serif"],
 });
 
 const GTM_ID = process.env.NEXT_PUBLIC_GTM_ID;
