@@ -182,9 +182,5 @@ export const posNutricaoDePrecisao: Course = {
     { icon: "live", title: "Ao vivo" },
     { icon: "play", title: "Gravada" },
   ],
-  pendingNotes: [
-    "Nome oficial e grade: confirmar se mudaram junto com o novo nome",
-    "Duração: site diz 18 meses no resumo e 15 a 16 meses no FAQ",
-    "Fotos originais (as atuais são provisórias)",
-          ],
+  pendingNotes: [],
 };

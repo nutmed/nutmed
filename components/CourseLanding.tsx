@@ -231,7 +231,6 @@ export default function CourseLanding({ course, campaign, showPending = false }:
           <GlassLeaf id="gl3" className="gl gl--c gl--blur float" />
           <div className="container position-relative">
             <SectionTitle kicker="Conteúdo" title={course.modules.title} intro={course.modules.intro} />
-            {showPending && <p className="pending-note text-center">A confirmar: os eixos podem mudar se a grade foi revista com o novo nome.</p>}
             <div className="row g-3 g-md-4 justify-content-center">
               {course.modules.groups.map((g) => (
                 <div className="col-md-6 col-lg-4" key={g.title}>
@@ -262,7 +261,6 @@ export default function CourseLanding({ course, campaign, showPending = false }:
           <Botanical className="deco deco--post-r sway" />
           <div className="container position-relative">
             <SectionTitle kicker="Diferenciais" title="Prática de verdade, do primeiro ao último encontro" light />
-            {showPending && <p className="pending-note text-center">Foto de banco de imagem (Magnific). Se houver fotos reais da clínica-escola, preferir.</p>}
             {featured && (
               <div className="glass-card feature-card" data-reveal>
                 <div className="glass-card__text">
