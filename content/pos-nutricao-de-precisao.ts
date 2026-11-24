@@ -7,7 +7,7 @@ export const posNutricaoDePrecisao: Course = {
   slug: "pos-nutricao-de-precisao",
   startLabel: "13 de março",
   ctaImage: "/img/turma-evento-provisoria.jpg",
-  rdConversionId: "lp-pos-nutricao-de-precisao-2027",
+  rdConversionId: "lp-pos-nutricao-de-precisao",
   seo: {
     title: "Pós em Nutrição de Precisão Funcional e Fitoterapia | NutMed",
     description:
@@ -39,7 +39,7 @@ export const posNutricaoDePrecisao: Course = {
     chips: [
       { icon: "calendar", label: "Início 13/03/2027" },
       { icon: "clock", label: "Sábados quinzenais, 8h30 às 17h30" },
-      { icon: "book", label: "460h em 36 encontros" },
+      { icon: "book", label: "460h de carga horária" },
       { icon: "pin", label: "Centro do Rio de Janeiro" },
     ],
     seals: ["Reconhecida pelo MEC"],
