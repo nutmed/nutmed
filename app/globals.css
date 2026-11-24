@@ -1834,13 +1834,25 @@ a {
     font-size: 18px;
     top: 12px;
   }
+  /* Quadrado mais largo que o círculo, para aparecer dos dois lados */
+  .glass-stage {
+    max-width: 340px;
+  }
+  .glass-stage::before {
+    left: 0;
+    right: 0;
+    height: 72%;
+  }
   .glass-circle {
-    width: 290px;
+    width: 260px;
     gap: 8px;
     padding: 20px;
   }
   .glass-circle__pill {
     font-size: 11px;
+    padding: 6px 10px;
+    letter-spacing: 0.02em;
+    white-space: nowrap;
   }
   .glass-circle h2 {
     font-size: 22px;

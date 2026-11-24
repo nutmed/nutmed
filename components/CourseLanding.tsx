@@ -334,7 +334,9 @@ export default function CourseLanding({ course, campaign, showPending = false }:
                   </div>
                   <p className="glass-stage__proof">
                     <span aria-hidden="true">★★★★★</span>
-                    Mais de 15 mil nutricionistas formados desde 2005
+                    Mais de 15 mil nutricionistas
+                    <br />
+                    formados desde 2005
                   </p>
                 </div>
               </div>
