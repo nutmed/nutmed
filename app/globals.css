@@ -1534,11 +1534,23 @@ a {
   }
 }
 
-/* "Inscrições abertas": cartão em degradê atrás do círculo, como na capa do post */
+/* "Inscrições abertas": cartão em degradê atrás do círculo, como na capa do post.
+   Mais estreito que o círculo e terminando acima do centro dele: as laterais e o
+   fundo ficam escondidos atrás do círculo, só o topo com a aba aparece. */
+.glass-stage {
+  --circle: min(400px, 100%);
+  --stage-pt: 64px;
+  padding-top: var(--stage-pt);
+}
+.glass-circle {
+  width: var(--circle);
+}
 .glass-stage::before {
-  left: 10%;
-  right: 10%;
-  height: 66%;
+  left: 50%;
+  right: auto;
+  width: calc(var(--circle) * 0.86);
+  transform: translateX(-50%);
+  height: calc(var(--stage-pt) + var(--circle) * 0.45);
   background: linear-gradient(180deg, #a48ee8 0%, #7b5fd6 45%, rgba(90, 64, 190, 0.55) 100%);
   border: 1px solid rgba(255, 255, 255, 0.45);
   box-shadow: 0 20px 40px rgba(30, 16, 90, 0.3), inset 0 1px 0 rgba(255, 255, 255, 0.4);
@@ -1828,23 +1840,14 @@ a {
     padding-top: 150px;
   }
   .glass-stage {
-    padding-top: 48px;
+    --circle: min(290px, 100%);
+    --stage-pt: 48px;
   }
   .glass-stage__tab {
     font-size: 18px;
     top: 12px;
   }
-  /* Quadrado mais largo que o círculo, para aparecer dos dois lados */
-  .glass-stage {
-    max-width: 340px;
-  }
-  .glass-stage::before {
-    left: 0;
-    right: 0;
-    height: 72%;
-  }
   .glass-circle {
-    width: 260px;
     gap: 8px;
     padding: 20px;
   }
