@@ -53,8 +53,10 @@ export type Course = {
   /**
    * Textos da imagem de compartilhamento (WhatsApp/redes).
    * Campos vazios usam o hero (eyebrow, title, highlight, início e selos).
+   * `image` é a foto suave no fundo (JPEG ou PNG em /public, nunca WebP/AVIF): use uma versão mínima e
+   * desfocada do hero em /img/og/ (ver CLAUDE.md), senão o PNG passa de 300 KB. Sem ela, só o degradê roxo.
    */
-  og?: { kicker?: string; title?: string; highlight?: string; footer?: string };
+  og?: { kicker?: string; title?: string; highlight?: string; footer?: string; image?: string };
   /** Texto das fitas cruzadas do CTA final quando não há campanha no ar. */
   tape: string;
   /** Campanha com data de fim (ex.: Black NutMed). Depois de endsAt a LP volta sozinha para a versão fixa. */

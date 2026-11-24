@@ -12,7 +12,14 @@ async function dataUri(publicPath: string, mime: string) {
   return `data:${mime};base64,${file.toString("base64")}`;
 }
 
-type OgText = { kicker: string; title: string; highlight?: string; footer: string };
+type OgText = { kicker: string; title: string; highlight?: string; footer: string; image?: string };
+
+// O Satori (next/og) só lê JPEG e PNG. Outros formatos ficam sem foto, só com o degradê.
+function imageMime(publicPath: string) {
+  if (/\.jpe?g$/i.test(publicPath)) return "image/jpeg";
+  if (/\.png$/i.test(publicPath)) return "image/png";
+  return null;
+}
 
 export function ogTextFromCourse(course: Course): OgText {
   return {
@@ -20,11 +27,15 @@ export function ogTextFromCourse(course: Course): OgText {
     title: course.og?.title ?? course.hero.title,
     highlight: course.og?.highlight ?? course.hero.highlight,
     footer: course.og?.footer ?? [course.hero.chips[0]?.label, ...course.hero.seals].filter(Boolean).join(" · "),
+    // Sem og.image fica só o degradê: a foto do hero em tamanho cheio deixaria o PNG acima de 300 KB.
+    image: course.og?.image,
   };
 }
 
-export async function renderOgImage({ kicker, title, highlight, footer }: OgText) {
+export async function renderOgImage({ kicker, title, highlight, footer, image }: OgText) {
   const logo = await dataUri("/img/nutmed-logo-light.svg", "image/svg+xml");
+  const mime = image ? imageMime(image) : null;
+  const photo = image && mime ? await dataUri(image, mime) : null;
 
   // Layout centralizado: o conteúdo cabe no quadrado central de 630x630, que o WhatsApp às vezes recorta.
   return new ImageResponse(
@@ -36,11 +47,36 @@ export async function renderOgImage({ kicker, title, highlight, footer }: OgText
           display: "flex",
           alignItems: "center",
           justifyContent: "center",
+          position: "relative",
           background: "linear-gradient(135deg, #4a2f9a 0%, #24124f 100%)",
           color: "#fff",
           fontFamily: "sans-serif",
         }}
       >
+        {/* Foto do curso bem suave no fundo: o degradê roxo por cima (~80%) mantém o texto legível. */}
+        {photo && (
+          // eslint-disable-next-line @next/next/no-img-element
+          <img
+            src={photo}
+            width={OG_SIZE.width}
+            height={OG_SIZE.height}
+            alt=""
+            style={{ position: "absolute", top: 0, left: 0, width: "100%", height: "100%", objectFit: "cover" }}
+          />
+        )}
+        {photo && (
+          <div
+            style={{
+              position: "absolute",
+              top: 0,
+              left: 0,
+              width: "100%",
+              height: "100%",
+              display: "flex",
+              background: "linear-gradient(135deg, rgba(74, 47, 154, 0.8) 0%, rgba(36, 18, 79, 0.86) 100%)",
+            }}
+          />
+        )}
         <div
           style={{
             display: "flex",

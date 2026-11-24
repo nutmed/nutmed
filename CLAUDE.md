@@ -18,7 +18,8 @@ Antes de subir, confira:
 
 - [ ] `npm run build` passa.
 - [ ] `http://localhost:3000/<slug>/opengraph-image` abre um PNG 1200x630, com menos de 300 KB e o título certo.
-- [ ] Título e logo cabem no quadrado central da imagem (o WhatsApp às vezes recorta em quadrado). Não use foto de fundo, porque deixa o PNG pesado demais.
+- [ ] Título e logo cabem no quadrado central da imagem (o WhatsApp às vezes recorta em quadrado).
+- [ ] Imagem OG: texto do curso sobre o degradê roxo, com a foto do Hero do curso bem suave ao fundo. Use sempre uma versão mínima e desfocada (ex.: 120x63, poucos KB) em content og.image — nunca a foto do hero em tamanho cheio — para o PNG ficar abaixo de 300 KB.
 - [ ] O código-fonte da página tem `<title>`, `meta description`, `link rel="canonical"`, `og:title`, `og:image` e `twitter:card` corretos.
 - [ ] O slug novo está na lista de `app/sitemap.ts`.
 

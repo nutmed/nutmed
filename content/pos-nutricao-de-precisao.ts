@@ -18,6 +18,7 @@ export const posNutricaoDePrecisao: Course = {
     title: "Pós em Nutrição de Precisão",
     highlight: "Funcional e Fitoterapia",
     footer: "Modalidade 3 em 1 · 460h · Reconhecida pelo MEC",
+    image: "/img/og/herbs-og.jpg",
   },
   tape: "Inscrições abertas · Turma 2027 · Vagas limitadas",
   // Black NutMed: sai do ar sozinha depois de endsAt (data a confirmar com a NutMed).
