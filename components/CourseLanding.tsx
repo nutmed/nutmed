@@ -250,7 +250,7 @@ export default function CourseLanding({ course, campaign, showPending = false }:
               ))}
             </div>
             <div className="text-center mt-5">
-              <a href="#inscricao" className="btn-nm btn-nm--accent">
+              <a href="#contato-final" className="btn-nm btn-nm--accent" data-cta="meio-form-final">
                 Quero saber mais <Icon name="arrow" size={18} />
               </a>
             </div>
@@ -338,7 +338,7 @@ export default function CourseLanding({ course, campaign, showPending = false }:
                   </p>
                 </div>
               </div>
-              <div className="col-lg-6">
+              <div className="col-lg-6" id="contato-final">
                 <LeadForm
                   {...formProps}
                   formId="form-final"
@@ -359,26 +359,6 @@ export default function CourseLanding({ course, campaign, showPending = false }:
             </div>
             <div className="col-md-9 text-md-end">
               <ul className="lp-contacts">
-                <li>
-                  <a
-                    href="https://wa.me/5521995432570"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    data-cta="footer-whatsapp"
-                  >
-                    <Icon name="whatsapp" size={18} /> (21) 99543-2570
-                  </a>
-                </li>
-                <li>
-                  <a href="tel:+552122404217" data-cta="footer-telefone">
-                    <Icon name="phone" size={18} /> (21) 2240-4217
-                  </a>
-                </li>
-                <li>
-                  <a href="https://nutmed.com.br" target="_blank" rel="noopener noreferrer" data-cta="footer-site">
-                    <Icon name="globe" size={18} /> nutmed.com.br
-                  </a>
-                </li>
                 <li>
                   <a
                     href="https://www.google.com/maps/search/?api=1&query=Rua+da+Quitanda,+187,+Centro,+Rio+de+Janeiro+RJ"
