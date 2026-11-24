@@ -1,6 +1,7 @@
 import { readFile } from "node:fs/promises";
 import { join } from "node:path";
 import { ImageResponse } from "next/og";
+import sharp from "sharp";
 import type { Course } from "@/content/types";
 
 // Imagem de compartilhamento (Open Graph) padrão das LPs: 1200x630, usada no WhatsApp, Instagram, Facebook e LinkedIn.
@@ -27,7 +28,7 @@ export function ogTextFromCourse(course: Course): OgText {
     title: course.og?.title ?? course.hero.title,
     highlight: course.og?.highlight ?? course.hero.highlight,
     footer: course.og?.footer ?? [course.hero.chips[0]?.label, ...course.hero.seals].filter(Boolean).join(" · "),
-    // Sem og.image fica só o degradê: a foto do hero em tamanho cheio deixaria o PNG acima de 300 KB.
+    // Sem og.image fica só o degradê. Use uma versão pequena (até ~480px) e levemente desfocada da foto do hero.
     image: course.og?.image,
   };
 }
@@ -53,7 +54,7 @@ export async function renderOgImage({ kicker, title, highlight, footer, image }:
           fontFamily: "sans-serif",
         }}
       >
-        {/* Foto do curso bem suave no fundo: o degradê roxo por cima (~80%) mantém o texto legível. */}
+        {/* Foto do curso suave no fundo: o degradê roxo por cima (~62-70%) deixa as ervas reconhecíveis. */}
         {photo && (
           // eslint-disable-next-line @next/next/no-img-element
           <img
@@ -73,7 +74,21 @@ export async function renderOgImage({ kicker, title, highlight, footer, image }:
               width: "100%",
               height: "100%",
               display: "flex",
-              background: "linear-gradient(135deg, rgba(74, 47, 154, 0.8) 0%, rgba(36, 18, 79, 0.86) 100%)",
+              background: "linear-gradient(135deg, rgba(74, 47, 154, 0.62) 0%, rgba(36, 18, 79, 0.7) 100%)",
+            }}
+          />
+        )}
+        {/* Reforço roxo atrás do texto central; as bordas ficam mais leves para as ervas aparecerem. */}
+        {photo && (
+          <div
+            style={{
+              position: "absolute",
+              top: 0,
+              left: 0,
+              width: "100%",
+              height: "100%",
+              display: "flex",
+              background: "radial-gradient(ellipse 50% 60% at 50% 50%, rgba(36, 18, 79, 0.6) 0%, rgba(36, 18, 79, 0.35) 55%, rgba(36, 18, 79, 0) 100%)",
             }}
           />
         )}
@@ -108,6 +123,14 @@ export async function renderOgImage({ kicker, title, highlight, footer, image }:
   );
 }
 
-export function courseOgImage(course: Course) {
-  return renderOgImage(ogTextFromCourse(course));
+// O PNG direto do Satori com a foto de fundo passa de 800 KB. Reduzir para 256 cores (paleta) deixa
+// a imagem visualmente igual e abaixo do limite de 300 KB do WhatsApp.
+async function compressPng(image: ImageResponse) {
+  const raw = Buffer.from(await image.arrayBuffer());
+  const png = await sharp(raw).png({ palette: true, colors: 256, dither: 0.5, compressionLevel: 9, effort: 10 }).toBuffer();
+  return new Response(new Uint8Array(png), { headers: { "Content-Type": "image/png" } });
+}
+
+export async function courseOgImage(course: Course) {
+  return compressPng(await renderOgImage(ogTextFromCourse(course)));
 }
