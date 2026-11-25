@@ -4,7 +4,7 @@ import Icon from "@/components/Icon";
 import Botanical from "@/components/Botanical";
 import GlassLeaf from "@/components/GlassLeaf";
 import Reveal from "@/components/Reveal";
-import { intents, nextSteps, seasonality, segments, terms, trends, verdicts, type Intent, type Tone } from "./data";
+import { intents, seasonality, segments, sourceGroups, terms, trends, validation, verdicts, type Intent, type Tone } from "./data";
 import s from "./pesquisa.module.css";
 
 // Página interna de estudo: fora do Google, fora do sitemap, sem formulário nem CTA de venda.
@@ -41,7 +41,29 @@ function TrendArrow({ dir }: { dir?: "up" | "down" }) {
   );
 }
 
-const levelLabel = { pico: "Pico", medio: "Médio", baixa: "Baixa" } as const;
+function SourceGroup({ group, cols }: { group: (typeof sourceGroups)[number]; cols?: boolean }) {
+  return (
+    <div className={s.sourceGroup}>
+      <h3>{group.title}</h3>
+      <ul className={cols ? s.sourceCols : undefined}>
+        {group.items.map((it) => (
+          <li key={it.name}>
+            {it.url ? (
+              <a href={it.url} target="_blank" rel="noopener noreferrer">
+                {it.name}
+              </a>
+            ) : (
+              <b>{it.name}</b>
+            )}
+            {it.detail && <span>{it.detail}</span>}
+          </li>
+        ))}
+      </ul>
+    </div>
+  );
+}
+
+const levelLabel ={ pico: "Pico", medio: "Médio", baixa: "Baixa" } as const;
 
 export default function Page() {
   return (
@@ -57,7 +79,8 @@ export default function Page() {
             <a href="#recomendacao">Recomendação</a>
             <a href="#busca">Busca</a>
             <a href="#concorrencia">Concorrência</a>
-            <a href="#proximos-passos">Próximos passos</a>
+            <a href="#validacao">Validação</a>
+            <a href="#fontes">Fontes</a>
           </nav>
           <span className={`pill pill--glass ${s.internal}`}>Estudo interno</span>
         </div>
@@ -133,9 +156,9 @@ export default function Page() {
                   Abrir <em>Nutrição e Gastroenterologia</em> primeiro, no formato 3 em 1 da Pós em Nutrição de Precisão.
                 </h2>
                 <p className={s.recoText}>
-                  Presencial no Centro do Rio, ao vivo e gravado, com a clínica-escola como prova de prática. A captação mistura busca de alta intenção (pouca, mas barata) com
-                  Meta Ads para nutricionistas, aproveitando o interesse crescente por microbiota. Nutrição Comportamental entra em segundo, com campanha só no Rio e mensagem de
-                  prática supervisionada para fugir da guerra de preço do EAD. Enteral e Parenteral fica em espera até existir parceria hospitalar.
+                  Presencial no Centro do Rio, ao vivo e gravado, com a clínica-escola como prova de prática e o interesse crescente por microbiota a favor. Nutrição
+                  Comportamental entra em segundo, com a prática supervisionada como diferencial para fugir da guerra de preço do EAD. Enteral e Parenteral fica em espera até
+                  existir parceria hospitalar.
                 </p>
               </div>
               <div className="col-lg-5" data-reveal>
@@ -149,7 +172,7 @@ export default function Page() {
                   <li className={s.toneOrange}>
                     <b>2</b>
                     <span>
-                      Nutrição Comportamental <small>Em segundo, campanha só no Rio</small>
+                      Nutrição Comportamental <small>Em segundo, com prática supervisionada</small>
                     </span>
                   </li>
                   <li className={s.toneMagenta}>
@@ -248,7 +271,7 @@ export default function Page() {
                     </li>
                   </ul>
                   <p className={s.tip}>
-                    <Icon name="calendar" size={18} /> Abrir campanha em fevereiro para turma de abril, e em julho para turma de setembro.
+                    <Icon name="calendar" size={18} /> Os meses de maior procura indicam a melhor janela para abrir matrículas: fevereiro a abril e julho a setembro.
                   </p>
                 </div>
               </div>
@@ -296,11 +319,11 @@ export default function Page() {
           </div>
         </section>
 
-        {/* SEGMENTAÇÃO E CONCORRÊNCIA */}
+        {/* CONCORRÊNCIA */}
         <section className="sec paper grain" id="concorrencia">
           <Botanical variant="rosemary" className="deco deco--paper-l sway sway--slow" />
           <div className="container position-relative">
-            <SectionTitle kicker="Segmentação e concorrência" title="Como captar cada curso, e contra quem" />
+            <SectionTitle kicker="Concorrência" title="Quem já disputa esses alunos, e por quanto" />
 
             {segments.map((c) => (
               <article key={c.name} className={`${s.course} ${toneClass[c.tone]}`}>
@@ -310,37 +333,18 @@ export default function Page() {
                   <span className={s.seal}>{c.seal}</span>
                 </header>
 
-                <div className="row g-3 g-lg-4">
-                  <div className="col-lg-7">
-                    <div className={s.box} data-reveal>
-                      <h4 className={s.boxTitle}>
-                        <Icon name="users" size={18} /> {c.segTitle}
-                      </h4>
-                      <dl className={s.segList}>
-                        {c.segmentation.map((g) => (
-                          <div key={g.label}>
-                            <dt>{g.label}</dt>
-                            <dd>{g.text}</dd>
-                          </div>
-                        ))}
-                      </dl>
-                    </div>
-                  </div>
-                  <div className="col-lg-5">
-                    <div className={`${s.box} ${s.boxArgs}`} data-reveal>
-                      <h4 className={s.boxTitle}>
-                        <Icon name="chat" size={18} /> {c.argsTitle}
-                      </h4>
-                      <ul className={s.args}>
-                        {c.args.map((a) => (
-                          <li key={a.text} className={a.kind === "con" ? s.con : s.pro}>
-                            <span aria-hidden="true">{a.kind === "con" ? "–" : "+"}</span>
-                            {a.text}
-                          </li>
-                        ))}
-                      </ul>
-                    </div>
-                  </div>
+                <div className={`${s.box} ${s.boxArgs}`} data-reveal>
+                  <h4 className={s.boxTitle}>
+                    <Icon name="chat" size={18} /> {c.argsTitle}
+                  </h4>
+                  <ul className={`${s.args} ${s.argsCols}`}>
+                    {c.args.map((a) => (
+                      <li key={a.text} className={a.kind === "con" ? s.con : s.pro}>
+                        <span aria-hidden="true">{a.kind === "con" ? "–" : "+"}</span>
+                        {a.text}
+                      </li>
+                    ))}
+                  </ul>
                 </div>
 
                 <div className={`${s.box} ${s.boxTable}`} data-reveal>
@@ -386,13 +390,17 @@ export default function Page() {
           </div>
         </section>
 
-        {/* PRÓXIMOS PASSOS */}
-        <section className="sec sky grain" id="proximos-passos">
+        {/* VALIDAÇÃO COM A PRÓPRIA BASE */}
+        <section className="sec sky grain" id="validacao">
           <GlassLeaf id="pm-gl4" className={`gl gl--b float float--slow ${s.glDesk}`} />
           <div className="container position-relative">
-            <SectionTitle kicker="Próximos passos" title="Como confirmar a demanda antes de abrir a turma" />
+            <SectionTitle
+              kicker="Validação com a própria base"
+              title="Perguntar primeiro para quem já é NutMed"
+              intro="Uma pesquisa curta com alunos atuais e ex-alunos (mais de 15 mil formados desde 2005) mostra se o interesse se confirma dentro de casa antes de abrir a turma."
+            />
             <ol className={`row g-3 g-md-4 ${s.steps}`}>
-              {nextSteps.map((st, i) => (
+              {validation.map((st, i) => (
                 <li className="col-md-4" key={st.title}>
                   <div className={`axis ${s.step}`} data-reveal>
                     <span className={s.stepNum}>{i + 1}</span>
@@ -404,17 +412,36 @@ export default function Page() {
                 </li>
               ))}
             </ol>
+          </div>
+        </section>
 
-            <div className={s.method} data-reveal>
-              <h3>
-                <Icon name="file" size={18} /> Nota de método
-              </h3>
-              <p>
-                Desk research em 25/11/2026 nos sites das instituições e nos agregadores Guia da Carreira e Quero Bolsa, mais Google Trends (Brasil, 5 anos). Preços conforme
-                anunciados na data, vários com desconto de novembro até 30/11. Instituto LG, Instituto Nutrir, UniCesde e Unifor não abriram para leitura. Os volumes mensais são
-                estimativas. Nenhuma instituição foi conferida no e-MEC.
-              </p>
+        {/* FONTES */}
+        <section className={s.sources} id="fontes">
+          <div className="container">
+            <h2 className={s.sourcesTitle}>
+              <Icon name="file" size={20} /> Fontes
+            </h2>
+            <div className="row g-4 g-lg-5">
+              <div className="col-lg-6">
+                {sourceGroups.slice(0, 2).map((g) => (
+                  <SourceGroup key={g.title} group={g} />
+                ))}
+                <div className={s.sourceGroup}>
+                  <h3>Nota de método</h3>
+                  <p>
+                    Desk research em 25/11/2026 nos sites das instituições e nos agregadores Guia da Carreira e Quero Bolsa, mais Google Trends (Brasil, 5 anos). Preços
+                    conforme anunciados em 25/11/2026, vários com desconto de novembro até 30/11. Instituto LG, Instituto Nutrir, UniCesde e Unifor não abriram para leitura.
+                    Os volumes mensais são estimativas. Nenhuma instituição foi conferida no e-MEC.
+                  </p>
+                </div>
+              </div>
+              <div className="col-lg-6">
+                {sourceGroups.slice(2).map((g) => (
+                  <SourceGroup key={g.title} group={g} cols />
+                ))}
+              </div>
             </div>
+            <p className={s.signature}>Pesquisa e análise: UPDO · Responsável: Rodrigo Bueno · 25/11/2026</p>
           </div>
         </section>
       </main>

@@ -54,9 +54,9 @@ export const verdicts: Verdict[] = [
 ];
 
 export const intents: { tag: Intent; title: string; text: string }[] = [
-  { tag: "Compra", title: "Quem procura curso", text: "Público da campanha." },
-  { tag: "Estudo", title: "Pesquisa o tema", text: "Remarketing e conteúdo." },
-  { tag: "Paciente", title: "Busca do consultório", text: "Mostra se o assunto cresce no consultório." },
+  { tag: "Compra", title: "Procura um curso", text: "Quem já está buscando onde estudar o tema." },
+  { tag: "Estudo", title: "Pesquisa o tema", text: "Nutricionistas se informando sobre o assunto." },
+  { tag: "Paciente", title: "Interesse do público final", text: "Mostra se o assunto cresce no consultório." },
 ];
 
 export type TrendRow = { term: string; ref?: boolean; avg: number; change: string; trend?: "up" | "down"; rj: string };
@@ -135,8 +135,6 @@ export type CourseSegment = {
   name: string;
   tone: Tone;
   seal: string;
-  segTitle: string;
-  segmentation: { label: string; text: string }[];
   argsTitle: string;
   args: { text: string; kind?: "pro" | "con" }[];
   competitors: Competitor[];
@@ -148,14 +146,6 @@ export const segments: CourseSegment[] = [
     name: "Nutrição e Gastroenterologia",
     tone: "green",
     seal: "Demanda crescente · concorrência baixa",
-    segTitle: "Segmentação sugerida",
-    segmentation: [
-      { label: "Google", text: "“pós nutrição gastroenterologia”, “curso microbiota intestinal”, “pós saúde intestinal”" },
-      { label: "Região", text: "Grande Rio e Niterói para o presencial; Brasil para ao vivo e gravado" },
-      { label: "Meta", text: "Nutricionistas de 23 a 45 anos; interesses microbiota, probióticos, nutrição funcional e clínica" },
-      { label: "Negativas", text: "gratuito, técnico, receita, sintomas, médico" },
-      { label: "Mensagem", text: "Único presencial no Rio com atendimento supervisionado em gastro na clínica-escola" },
-    ],
     argsTitle: "Por que primeiro",
     args: [
       { text: "Microbiota é o termo de maior interesse e mais que dobrou desde 2022.", kind: "pro" },
@@ -176,14 +166,6 @@ export const segments: CourseSegment[] = [
     name: "Nutrição Comportamental",
     tone: "orange",
     seal: "Demanda alta em queda · concorrência muito alta",
-    segTitle: "Segmentação sugerida",
-    segmentation: [
-      { label: "Google", text: "Só termos com local ou formato (“pós nutrição comportamental rj”, “presencial”). Fora do Rio, o leilão é dos EADs" },
-      { label: "Região", text: "Grande Rio e Niterói" },
-      { label: "Meta", text: "Nutricionistas de 23 a 40 anos; interesses comportamento alimentar, comer intuitivo, transtornos alimentares, psicologia" },
-      { label: "Negativas", text: "EAD, online, barato, gratuito, curso livre" },
-      { label: "Mensagem", text: "Atendimento real supervisionado e o novo paciente das canetas emagrecedoras" },
-    ],
     argsTitle: "Riscos e a favor",
     args: [
       { text: "O aluno compara com EAD de R$ 100/mês, e 18+ faculdades anunciam.", kind: "con" },
@@ -203,15 +185,9 @@ export const segments: CourseSegment[] = [
     name: "Terapia Nutricional Enteral e Parenteral",
     tone: "magenta",
     seal: "Nicho em queda · exige hospital",
-    segTitle: "Se for abrir",
-    segmentation: [
-      { label: "Nome", text: "Vender como Nutrição Hospitalar e Terapia Nutricional" },
-      { label: "Google", text: "“pós nutrição hospitalar”, “pós terapia nutricional”" },
-      { label: "Meta", text: "Nutricionistas em hospital, home care e UTI; recém-formados que miram residência" },
-      { label: "Mensagem", text: "Prática em hospital parceiro" },
-    ],
     argsTitle: "Por que terceiro",
     args: [
+      { text: "Teria mais busca se fosse vendido como Nutrição Hospitalar, termo vizinho com 500 a 1.500 buscas por mês.", kind: "pro" },
       { text: "“Terapia nutricional” caiu de 53 para 33 e o Rio é o 19º estado.", kind: "con" },
       { text: "O IDOR (Rede D'Or) vende com prática no Copa D'Or por R$ 16,6 mil.", kind: "con" },
       { text: "A clínica-escola é ambulatorial, sem UTI nem parenteral.", kind: "con" },
@@ -228,17 +204,74 @@ export const segments: CourseSegment[] = [
   },
 ];
 
-export const nextSteps: { title: string; text: string }[] = [
+// Validação com a própria base: o que medir numa pesquisa interna com alunos e ex-alunos.
+export const validation: { title: string; text: string }[] = [
   {
-    title: "Medir o volume real",
-    text: "Rodar os termos de compra no Planejador de Palavras-chave do Google Ads, com filtro Brasil e Rio. Leva cerca de uma hora, troca as estimativas por números e mostra o custo por clique.",
+    title: "Interesse em cada tema",
+    text: "Qual das três pós cada aluno faria: Nutrição e Gastroenterologia, Nutrição Comportamental ou Terapia Nutricional Enteral e Parenteral.",
   },
   {
-    title: "Perguntar para a base",
-    text: "Pesquisa curta pelo RD Station para ex-alunos e leads, com os três temas e o formato preferido.",
+    title: "Formato preferido",
+    text: "Presencial no Centro do Rio, ao vivo ou gravado, para saber quanto da turma depende da sala de aula.",
   },
   {
-    title: "Teste de captação",
-    text: "Página de lista de espera de Gastro com R$ 1 mil a R$ 2 mil de mídia por 2 a 3 semanas, comparando o custo por lead com o da Pós em Nutrição de Precisão.",
+    title: "Faixa de investimento",
+    text: "Quanto pagariam por uma pós com prática supervisionada, para comparar com os preços do mercado mapeados aqui.",
+  },
+];
+
+export type Source = { name: string; url?: string; detail?: string };
+
+export const sourceGroups: { title: string; items: Source[] }[] = [
+  {
+    title: "Interesse de busca",
+    items: [
+      {
+        name: "Google Trends",
+        url: "https://trends.google.com/trends/explore?geo=BR&date=today%205-y&q=microbiota%20intestinal,terapia%20nutricional,nutri%C3%A7%C3%A3o%20comportamental",
+        detail:
+          "Brasil, últimos 5 anos, consulta em 25/11/2026. Termos: microbiota intestinal, terapia nutricional, nutrição comportamental, nutrição clínica e nutrição funcional. Índice relativo de 0 a 100.",
+      },
+      {
+        name: "Volume mensal de busca",
+        detail: "Estimativa de ordem de grandeza da UPDO, a confirmar no Planejador de Palavras-chave do Google Ads (dados não públicos).",
+      },
+    ],
+  },
+  {
+    title: "Agregadores de cursos",
+    items: [
+      {
+        name: "Guia da Carreira · Nutrição Comportamental",
+        url: "https://www.guiadacarreira.com.br/cursos-e-faculdades/nutricao-comportamental/pos-graduacao",
+        detail: "18 instituições, cerca de 500 ofertas.",
+      },
+      {
+        name: "Quero Bolsa · Terapia Nutricional Enteral e Parenteral",
+        url: "https://querobolsa.com.br/cursos-e-faculdades/terapia-nutricional-enteral-e-parenteral/pos-graduacao",
+        detail: "18 instituições.",
+      },
+    ],
+  },
+  {
+    title: "Sites oficiais das instituições (consultados em 25/11/2026)",
+    items: [
+      { name: "Modulação Intestinal", url: "https://pos.modulacaointestinal.com.br/turmas/11/visualizar" },
+      { name: "PUC Minas", url: "https://vemprapuc.pucminas.br/nutricao-e-saude-intestinal-ead-com-aulas-ao-vivo" },
+      { name: "iPGS · Gastro e Hepatologia", url: "https://rd.ipgs.com.br/pos-graduacao-nutricao-gastroenterologia-hepatologia" },
+      { name: "PratiEnsino", url: "https://pratiensino.com.br/pos-graduacao-em-gatroenterologia-aplicada-a-nutricao-clinica/" },
+      { name: "UniBF", url: "https://www.unibf.com.br/curso/pos-graduacao/estudos-em-gastroenterologia" },
+      { name: "Uniube", url: "https://pos.uniube.br/curso/ead/especializacao-em-nutricao-comportamental" },
+      { name: "MasterPós", url: "https://masterpos.com.br/pos-graduacoes/pos-graduacao-em-nutricao-comportamental/" },
+      { name: "wPós", url: "https://wpos.com.br/pos-graduacao/curso/psiconutricao---o-comportamento-alimentar" },
+      { name: "Univates", url: "https://www.univates.br/pos-graduacao/especializacao/230" },
+      { name: "IDOR · Rede D'Or", url: "https://www.rededorsaoluiz.com.br/instituto/idor/cursos/terapia-nutricional/" },
+      { name: "Univ. Tuiuti do Paraná", url: "https://www.posdigital.utp.br/cursos/terapia-nutricional-enteral-e-parenteral/" },
+      { name: "Univ. de Passo Fundo", url: "https://www.pos.upf.br/cursos/terapia-nutricional-enteral-e-parenteral/" },
+      { name: "iPGS · Enteral e Parenteral", url: "https://rd.ipgs.com.br/terapia-nutricional-enteral-e-parenteral-lp" },
+      { name: "Faveni", url: "https://faveni.edu.br/curso/terapia-nutricional-parenteral-e-enteral/" },
+      { name: "Uninter", url: "https://www.uninter.com/pos-graduacao/a-distancia/terapia-nutricional-enteral-e-parenteral/" },
+      { name: "Ganep", url: "https://www.ead.com.br/faculdades/ganep-educacao/cursos/terapia-nutricional-e-nutricao-clinica" },
+    ],
   },
 ];
