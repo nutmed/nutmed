@@ -635,7 +635,7 @@ export default function Page() {
             />
             <ol className={`row g-3 g-md-4 ${s.steps}`}>
               {validation.map((st, i) => (
-                <li className="col-md-4" key={st.title}>
+                <li className="col-md-6 col-lg-3" key={st.title}>
                   <div className={`axis ${s.step}`} data-reveal>
                     <span className={s.stepNum}>{i + 1}</span>
                     <div>

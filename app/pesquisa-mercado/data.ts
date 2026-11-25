@@ -221,6 +221,10 @@ export const validation: { title: string; text: string }[] = [
     title: "Faixa de investimento",
     text: "Quanto pagariam por uma pós com prática supervisionada, para comparar com os preços do mercado mapeados aqui.",
   },
+  {
+    title: "O que impediria",
+    text: "Por que não fariam: preço, distância até o Centro, horário de sábado ou já ter outra pós. Mostra onde a turma pode perder alunos.",
+  },
 ];
 
 export type Source = { name: string; url?: string; detail?: string };
