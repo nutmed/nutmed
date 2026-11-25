@@ -24,6 +24,7 @@ export const verdicts: Verdict[] = [
       { label: "Tendência", value: "Sobe forte (microbiota 25→54)", trend: "up" },
       { label: "Concorrência", value: "Baixa" },
       { label: "Preço do mercado", value: "R$ 2,6 mil a R$ 18 mil" },
+      { label: "Título de especialista", value: "Sim, aberto em 2026", trend: "up" },
     ],
     text: "Menos gente buscando hoje, mas o tema cresce e quase ninguém disputa esse aluno. Melhor custo por aluno esperado.",
   },
@@ -36,6 +37,7 @@ export const verdicts: Verdict[] = [
       { label: "Tendência", value: "Cai (17→5 desde 2022)", trend: "down" },
       { label: "Concorrência", value: "Muito alta, 18+ EADs" },
       { label: "Preço do mercado", value: "R$ 60 a R$ 250 por mês" },
+      { label: "Título de especialista", value: "Não existe", trend: "down" },
     ],
     text: "Maior volume de busca hoje e o Rio é o 3º estado. Só que o leilão é disputado por EAD barato, então o lead sai caro.",
   },
@@ -48,6 +50,7 @@ export const verdicts: Verdict[] = [
       { label: "Tendência", value: "Cai (53→33 desde 2022)", trend: "down" },
       { label: "Concorrência", value: "IDOR domina o Rio" },
       { label: "Preço do mercado", value: "R$ 700 a R$ 16,6 mil" },
+      { label: "Título de especialista", value: "Reconhecido, sem edital em 2026" },
     ],
     text: "*Só chega nesse volume se o curso for vendido como Nutrição Hospitalar. Rio é só o 19º estado e falta hospital parceiro.",
   },
@@ -239,6 +242,30 @@ export const sourceGroups: { title: string; items: Source[] }[] = [
     ],
   },
   {
+    title: "Mercado de trabalho",
+    items: [
+      {
+        name: "CFN · Consulta Nacional de Nutricionistas e Perfil da Nutrição",
+        url: "https://pesquisa.cfn.org.br/",
+        detail: "Nutricionistas inscritos por estado (fev/2024) e formação (pesquisa de 2016, amostra de 1.104 profissionais).",
+      },
+      {
+        name: "DIEESE · Perfil dos Nutricionistas no Brasil (mar/2025)",
+        url: "https://www.fnn.org.br/arquivos/noticias/relatorio-nutricionistas-2025.pdf",
+        detail: "Vínculos com carteira assinada e remuneração, base RAIS 2022.",
+      },
+    ],
+  },
+  {
+    title: "Título de especialista",
+    items: [
+      { name: "ASBRAN · Título de especialista", url: "https://www.asbran.org.br/titulo" },
+      { name: "ASBRAN · Edital nº 001/2026", url: "https://www.asbran.org.br/storage/arquivos/titulo/Edital_ASBRAN_n001_2026.pdf" },
+      { name: "ASBRAN · Perguntas frequentes 2026", url: "https://www.asbran.org.br/storage/arquivos/titulo/FAQ_2026.pdf" },
+      { name: "CRN-7 · Registro do título de especialista", url: "https://www.crn7.org/registro-do-titulo-de-especialista/" },
+    ],
+  },
+  {
     title: "Agregadores de cursos",
     items: [
       {
@@ -251,11 +278,17 @@ export const sourceGroups: { title: string; items: Source[] }[] = [
         url: "https://querobolsa.com.br/cursos-e-faculdades/terapia-nutricional-enteral-e-parenteral/pos-graduacao",
         detail: "18 instituições.",
       },
+      {
+        name: "Educaedu · Nutrição no Rio de Janeiro",
+        url: "https://www.educaedu-brasil.com/nutricao/rio-de-janeiro",
+        detail: "Pós presenciais listadas no Rio (não verificadas nas páginas próprias).",
+      },
     ],
   },
   {
     title: "Sites oficiais das instituições (consultados em 25/11/2026)",
     items: [
+      { name: "FABA · Faculdade Bezerra de Araújo", url: "https://posgraduacao.faba.edu.br/barra/nutricao-clinica/" },
       { name: "Modulação Intestinal", url: "https://pos.modulacaointestinal.com.br/turmas/11/visualizar" },
       { name: "PUC Minas", url: "https://vemprapuc.pucminas.br/nutricao-e-saude-intestinal-ead-com-aulas-ao-vivo" },
       { name: "iPGS · Gastro e Hepatologia", url: "https://rd.ipgs.com.br/pos-graduacao-nutricao-gastroenterologia-hepatologia" },
@@ -274,4 +307,110 @@ export const sourceGroups: { title: string; items: Source[] }[] = [
       { name: "Ganep", url: "https://www.ead.com.br/faculdades/ganep-educacao/cursos/terapia-nutricional-e-nutricao-clinica" },
     ],
   },
+];
+
+// ---------- Tamanho do mercado ----------
+export const market: { value: string; label: string; detail: string; source: string }[] = [
+  {
+    value: "194.018",
+    label: "nutricionistas inscritos no Brasil",
+    detail: "Base total da profissão.",
+    source: "CFN, Consulta Nacional de Nutricionistas, fev/2024",
+  },
+  {
+    value: "15.254",
+    label: "nutricionistas no estado do Rio",
+    detail: "2º maior estado, depois de SP (34.189). É o público direto de um curso presencial no Centro do Rio.",
+    source: "CFN, Perfil da Nutrição",
+  },
+  {
+    value: "73,2%",
+    label: "têm pós-graduação",
+    detail: "50,5% têm especialização lato sensu.",
+    source: "CFN, Perfil da Nutrição, 2016 (1.104 profissionais)",
+  },
+  {
+    value: "54.282",
+    label: "com carteira assinada no Brasil",
+    detail: "6.128 no RJ (11,3%), com remuneração média de R$ 4.283,70 no estado.",
+    source: "DIEESE, Perfil dos Nutricionistas no Brasil, mar/2025 (RAIS 2022)",
+  },
+];
+
+export const marketReads: string[] = [
+  "A especialização é a norma da profissão: o desafio não é convencer a fazer pós, é ser a escolhida (e a segunda pós).",
+  "A maioria atua como autônoma ou em consultório, o perfil que mais busca diferenciação clínica.",
+];
+
+// ---------- Concorrência presencial no Rio ----------
+export type RioCompetitor = { name: string; course: string; detail: string; url?: string; verified: boolean };
+
+export const rioCompetitors: RioCompetitor[] = [
+  {
+    name: "FABA · Faculdade Bezerra de Araújo",
+    course: "Pós em Nutrição Clínica",
+    detail:
+      "Polo Barra da Tijuca, híbrida (sábados alternados, 8h às 17h), 400h, 18 meses. R$ 250 de matrícula + 17x R$ 450 (R$ 7.900). Cita assistência hospitalar e modulação intestinal.",
+    url: "https://posgraduacao.faba.edu.br/barra/nutricao-clinica/",
+    verified: true,
+  },
+  {
+    name: "IDOR · Rede D'Or",
+    course: "Terapia Nutricional",
+    detail: "Híbrido com prática no Copa D'Or e no Copa Star. R$ 16.650.",
+    url: "https://www.rededorsaoluiz.com.br/instituto/idor/cursos/terapia-nutricional/",
+    verified: true,
+  },
+  { name: "UNISUAM", course: "Nutrição Clínica com ênfase em obesidade e endocrinologia", detail: "Presencial no Rio.", verified: false },
+  { name: "Faculdades São Camilo", course: "Nutrição Clínica", detail: "Presencial no Rio.", verified: false },
+  { name: "Estácio", course: "Nutrição Clínica e Funcional", detail: "Presencial no Rio.", verified: false },
+  { name: "UFRJ", course: "Especialização em Nutrição", detail: "Presencial no Rio.", verified: false },
+  { name: "UVA", course: "Nutrologia", detail: "Presencial na Tijuca.", verified: false },
+  { name: "PUC-Rio (CCE)", course: "Nutrição Clínica", detail: "A página do curso não abriu para leitura.", verified: false },
+];
+
+// ---------- Régua de preço (total do curso, R$ 0 a R$ 18 mil) ----------
+export const PRICE_MAX = 18000;
+
+export const priceBands: { label: string; min: number; max: number; range: string; who: string; tone: "ead" | "uni" | "rio" | "premium" }[] = [
+  { label: "EAD gravado", min: 700, max: 2600, range: "R$ 700 a R$ 2.600", who: "Faveni, Uniube, UniBF, faculdades dos agregadores", tone: "ead" },
+  { label: "EAD de universidade / ao vivo", min: 4250, max: 11205, range: "R$ 4.250 a R$ 11.205", who: "UPF, UTP, iPGS (~R$ 5.700), PUC Minas", tone: "uni" },
+  { label: "Presencial / híbrido no Rio", min: 7900, max: 16650, range: "R$ 7.900 a R$ 16.650", who: "FABA (R$ 7.900) a IDOR (R$ 16.650)", tone: "rio" },
+  { label: "Premium de nicho com prática", min: 13000, max: 18000, range: "R$ 13 mil a R$ 18 mil", who: "Modulação Intestinal, IDOR", tone: "premium" },
+];
+
+export const nutmedBand = { min: 8000, max: 16000, label: "Onde a NutMed se encaixa", range: "R$ 8 mil a R$ 16 mil" };
+
+// ---------- Título de especialista ----------
+export const titleRows: { course: string; tone: Tone; specialty: string; status: string; kind: "yes" | "partial" | "no"; note: string }[] = [
+  {
+    course: "Nutrição e Gastroenterologia",
+    tone: "green",
+    specialty: "Nutrição Clínica em Gastroenterologia",
+    status: "Reconhecida e aberta no edital 2026",
+    kind: "yes",
+    note: "Uma das 6 áreas do edital ASBRAN 001/2026 (prova em 23/10/2026). Forte argumento de venda.",
+  },
+  {
+    course: "Nutrição Comportamental",
+    tone: "orange",
+    specialty: "Não existe com esse nome",
+    status: "Sem título",
+    kind: "no",
+    note: "O curso não leva a um título, o que reforça a necessidade de diferencial prático.",
+  },
+  {
+    course: "Terapia Nutricional Enteral e Parenteral",
+    tone: "magenta",
+    specialty: "Terapia de Nutrição Parenteral e Enteral",
+    status: "Reconhecida, sem edital em 2026",
+    kind: "partial",
+    note: "Não foi aberta no edital 2026. A área de Nutrição Clínica em Terapia Intensiva foi.",
+  },
+];
+
+export const titleRules: { label: string; text: string }[] = [
+  { label: "Quem concede", text: "A ASBRAN concede o título e ele é registrado no CRN. O CFN reconhece 34 especialidades (Resolução CFN 689/2021)." },
+  { label: "Peso da pós", text: "Não é pré-requisito, mas uma especialização lato sensu de no mínimo 360h na área vale 5 pontos na análise de títulos (área afim, 2,5)." },
+  { label: "Requisitos", text: "2 anos de inscrição ativa no CRN; prova de 50 questões, com aprovação a partir de 70%; taxa de R$ 400 (sócio) ou R$ 800." },
 ];

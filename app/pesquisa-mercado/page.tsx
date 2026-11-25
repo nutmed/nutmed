@@ -4,7 +4,23 @@ import Icon from "@/components/Icon";
 import Botanical from "@/components/Botanical";
 import GlassLeaf from "@/components/GlassLeaf";
 import Reveal from "@/components/Reveal";
-import { intents, seasonality, segments, sourceGroups, terms, trends, validation, verdicts, type Intent, type Tone } from "./data";
+import {
+  intents,
+  market,
+  marketReads,
+  nutmedBand,
+  PRICE_MAX,
+  priceBands,
+  rioCompetitors,
+  seasonality,
+  segments,
+  sourceGroups,
+  terms,
+  titleRows,
+  titleRules,
+  trends,
+  validation,
+  verdicts, type Intent, type Tone } from "./data";
 import s from "./pesquisa.module.css";
 
 // Página interna de estudo: fora do Google, fora do sitemap, sem formulário nem CTA de venda.
@@ -23,7 +39,7 @@ function SectionTitle({ kicker, title, intro, light }: { kicker: string; title: 
       <span className="kicker">{kicker}</span>
       <h2>{title}</h2>
       <span className="title-underline" aria-hidden="true" />
-      {intro && <p>{intro}</p>}
+      {intro && <p className={s.intro}>{intro}</p>}
     </div>
   );
 }
@@ -63,7 +79,12 @@ function SourceGroup({ group, cols }: { group: (typeof sourceGroups)[number]; co
   );
 }
 
-const levelLabel ={ pico: "Pico", medio: "Médio", baixa: "Baixa" } as const;
+// Régua de preço: posição em % de R$ 0 a R$ 18 mil.
+const pct = (v: number) => `${(v / PRICE_MAX) * 100}%`;
+const bandStyle = (min: number, max: number) => ({ left: pct(min), width: `calc(${pct(max - min)})` });
+const zoneStyle = bandStyle(nutmedBand.min, nutmedBand.max);
+
+const levelLabel = { pico: "Pico", medio: "Médio", baixa: "Baixa" } as const;
 
 export default function Page() {
   return (
@@ -77,9 +98,11 @@ export default function Page() {
           </a>
           <nav className={s.nav} aria-label="Seções da pesquisa">
             <a href="#veredito">Veredito</a>
-            <a href="#recomendacao">Recomendação</a>
+            <a href="#mercado">Mercado</a>
             <a href="#busca">Busca</a>
             <a href="#concorrencia">Concorrência</a>
+            <a href="#preco">Preço</a>
+            <a href="#titulo">Título</a>
             <a href="#validacao">Validação</a>
             <a href="#fontes">Fontes</a>
           </nav>
@@ -184,6 +207,40 @@ export default function Page() {
                   </li>
                 </ol>
               </div>
+            </div>
+          </div>
+        </section>
+
+        {/* TAMANHO DO MERCADO */}
+        <section className={`sec paper grain ${s.anchor}`} id="mercado">
+          <Botanical variant="rosemary" className="deco deco--paper-l sway sway--slow" />
+          <div className="container position-relative">
+            <SectionTitle
+              kicker="Tamanho do mercado"
+              title="Quantos nutricionistas existem, e quantos já fazem pós"
+              intro="Os números oficiais da profissão mostram um público grande, com o Rio em 2º lugar entre os estados, e acostumado a se especializar."
+            />
+            <div className="row g-3 g-lg-4">
+              {market.map((m) => (
+                <div className="col-sm-6 col-lg-3" key={m.label}>
+                  <div className={s.bigStat} data-reveal>
+                    <strong>{m.value}</strong>
+                    <span className={s.bigStatLabel}>{m.label}</span>
+                    <p>{m.detail}</p>
+                    <small>{m.source}</small>
+                  </div>
+                </div>
+              ))}
+            </div>
+            <div className={`row g-3 g-lg-4 ${s.reads}`}>
+              {marketReads.map((r) => (
+                <div className="col-lg-6" key={r}>
+                  <p className={s.read} data-reveal>
+                    <Icon name="leaf" size={20} />
+                    {r}
+                  </p>
+                </div>
+              ))}
             </div>
           </div>
         </section>
@@ -326,6 +383,61 @@ export default function Page() {
           <div className="container position-relative">
             <SectionTitle kicker="Concorrência" title="Quem já disputa esses alunos, e por quanto" />
 
+            {/* Concorrência presencial no Rio */}
+            <div className={s.rio} data-reveal>
+              <h3 className={s.rioTitle}>
+                <Icon name="pin" size={22} /> Concorrência presencial no Rio
+              </h3>
+              <div className="row g-3 g-lg-4">
+                <div className="col-lg-6">
+                  <h4 className={s.rioGroup}>
+                    <span className={s.verified}>Verificado</span> na página da instituição
+                  </h4>
+                  {rioCompetitors
+                    .filter((r) => r.verified)
+                    .map((r) => (
+                      <div className={s.rioCard} key={r.name}>
+                        <b>
+                          {r.url ? (
+                            <a href={r.url} target="_blank" rel="noopener noreferrer">
+                              {r.name} <Icon name="arrow" size={14} />
+                            </a>
+                          ) : (
+                            r.name
+                          )}
+                        </b>
+                        <span className={s.rioCourse}>{r.course}</span>
+                        <p>{r.detail}</p>
+                      </div>
+                    ))}
+                </div>
+                <div className="col-lg-6">
+                  <h4 className={s.rioGroup}>
+                    <span className={s.unverified}>Não verificado</span> listados no Educaedu como presenciais no Rio
+                  </h4>
+                  <ul className={s.rioList}>
+                    {rioCompetitors
+                      .filter((r) => !r.verified)
+                      .map((r) => (
+                        <li key={r.name}>
+                          <b>{r.name}</b> · {r.course}
+                          <small>{r.detail}</small>
+                        </li>
+                      ))}
+                  </ul>
+                  <p className={s.rioWarn}>Dados do agregador podem estar desatualizados.</p>
+                </div>
+              </div>
+              <p className={s.conclusion}>
+                <Icon name="star" size={20} />
+                <span>
+                  <b>Nenhuma pós presencial no Rio é específica de Gastroenterologia ou de Nutrição Comportamental.</b> As presenciais são de Nutrição Clínica geral; a única
+                  especializada é a de Terapia Nutricional do IDOR.
+                </span>
+              </p>
+            </div>
+
+
             {segments.map((c) => (
               <article key={c.name} className={`${s.course} ${toneClass[c.tone]}`}>
                 <header className={s.courseHead} data-reveal>
@@ -391,8 +503,129 @@ export default function Page() {
           </div>
         </section>
 
+        {/* RÉGUA DE PREÇO */}
+        <section className={`sec post-bg grain ${s.anchor}`} id="preco">
+          <Botanical className="deco deco--post-r sway" />
+          <div className="container position-relative">
+            <SectionTitle
+              kicker="Régua de preço"
+              title="Quanto o mercado cobra pelo curso inteiro"
+              intro="Valor total do curso, de R$ 0 a R$ 18 mil, por tipo de oferta."
+              light
+            />
+            <div className={s.ruler} data-reveal>
+              {priceBands.map((b) => (
+                <div className={s.rulerRow} key={b.label}>
+                  <div className={s.rulerLabel}>
+                    <b>{b.label}</b>
+                    <span>{b.who}</span>
+                  </div>
+                  <div className={s.rulerTrack}>
+                    <span className={s.rulerZone} style={zoneStyle} aria-hidden="true" />
+                    <span className={`${s.rulerBar} ${s[`band_${b.tone}`]}`} style={bandStyle(b.min, b.max)}>
+                      <em>{b.range}</em>
+                    </span>
+                  </div>
+                </div>
+              ))}
+              <div className={`${s.rulerRow} ${s.rulerNutmed}`}>
+                <div className={s.rulerLabel}>
+                  <b>{nutmedBand.label}</b>
+                  <span>Presencial + ao vivo + gravado, com clínica-escola</span>
+                </div>
+                <div className={s.rulerTrack}>
+                  <span className={s.rulerZone} style={zoneStyle} aria-hidden="true" />
+                  <span className={`${s.rulerBar} ${s.band_nutmed}`} style={bandStyle(nutmedBand.min, nutmedBand.max)}>
+                    <em>{nutmedBand.range}</em>
+                  </span>
+                </div>
+              </div>
+              <div className={s.rulerRow} aria-hidden="true">
+                <div />
+                <div className={s.rulerAxis}>
+                  {[0, 3, 6, 9, 12, 15, 18].map((k) => (
+                    <span key={k} style={{ left: `${(k / 18) * 100}%` }}>
+                      {k === 0 ? "R$ 0" : `${k} mil`}
+                    </span>
+                  ))}
+                </div>
+              </div>
+            </div>
+            <div className="row g-3 g-lg-4 mt-1">
+              <div className="col-lg-7">
+                <p className={s.priceRead} data-reveal>
+                  A NutMed, com presencial, ao vivo e gravado e a clínica-escola, compete na faixa presencial/premium (R$ 8 mil a R$ 16 mil), não com o EAD.
+                </p>
+              </div>
+              <div className="col-lg-5">
+                <p className={s.priceNote} data-reveal>
+                  O valor da Pós em Nutrição de Precisão não é público (é enviado pela equipe), então não está na régua.
+                </p>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        {/* TÍTULO DE ESPECIALISTA */}
+        <section className={`sec sky grain ${s.anchor}`} id="titulo">
+          <GlassLeaf id="pm-gl5" className={`gl gl--a float ${s.glDesk}`} />
+          <div className="container position-relative">
+            <SectionTitle
+              kicker="Título de especialista"
+              title="Qual curso ajuda o aluno a virar especialista"
+              intro="A pós não é obrigatória para o título, mas conta pontos, e só alguns temas levam a uma especialidade reconhecida."
+            />
+            <div className={s.panel} data-reveal>
+              <div className={s.tableWrap}>
+                <table className={`${s.table} ${s.titleTable}`}>
+                  <thead>
+                    <tr>
+                      <th>Curso</th>
+                      <th>Especialidade reconhecida</th>
+                      <th>Situação</th>
+                      <th>O que significa</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {titleRows.map((r) => (
+                      <tr key={r.course} className={toneClass[r.tone]}>
+                        <td className={s.titleCourse}>
+                          <span className={s.accDot} /> {r.course}
+                        </td>
+                        <td>{r.specialty}</td>
+                        <td>
+                          <span className={`${s.status} ${s[`status_${r.kind}`]}`}>{r.status}</span>
+                        </td>
+                        <td className={s.titleNote}>{r.note}</td>
+                      </tr>
+                    ))}
+                  </tbody>
+                </table>
+              </div>
+            </div>
+            <div className="row g-3 g-md-4 mt-1">
+              {titleRules.map((r) => (
+                <div className="col-md-4" key={r.label}>
+                  <div className={`axis ${s.ruleCard}`} data-reveal>
+                    <div>
+                      <h3>{r.label}</h3>
+                      <p>{r.text}</p>
+                    </div>
+                  </div>
+                </div>
+              ))}
+            </div>
+            <p className={s.implication} data-reveal>
+              <Icon name="badge" size={22} />
+              <span>
+                <b>Implicação:</b> uma pós NutMed em Gastro com 360h ou mais ajuda o aluno a pontuar para o título de especialista.
+              </span>
+            </p>
+          </div>
+        </section>
+
         {/* VALIDAÇÃO COM A PRÓPRIA BASE */}
-        <section className={`sec sky grain ${s.anchor}`} id="validacao">
+        <section className={`sec paper grain ${s.anchor}`} id="validacao">
           <GlassLeaf id="pm-gl4" className={`gl gl--b float float--slow ${s.glDesk}`} />
           <div className="container position-relative">
             <SectionTitle
