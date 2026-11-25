@@ -8,9 +8,6 @@ import {
   intents,
   market,
   marketReads,
-  nutmedBand,
-  PRICE_MAX,
-  priceBands,
   rioCompetitors,
   seasonality,
   segments,
@@ -79,11 +76,6 @@ function SourceGroup({ group, cols }: { group: (typeof sourceGroups)[number]; co
   );
 }
 
-// Régua de preço: posição em % de R$ 0 a R$ 18 mil.
-const pct = (v: number) => `${(v / PRICE_MAX) * 100}%`;
-const bandStyle = (min: number, max: number) => ({ left: pct(min), width: `calc(${pct(max - min)})` });
-const zoneStyle = bandStyle(nutmedBand.min, nutmedBand.max);
-
 const levelLabel = { pico: "Pico", medio: "Médio", baixa: "Baixa" } as const;
 
 export default function Page() {
@@ -101,7 +93,6 @@ export default function Page() {
             <a href="#mercado">Mercado</a>
             <a href="#busca">Busca</a>
             <a href="#concorrencia">Concorrência</a>
-            <a href="#preco">Preço</a>
             <a href="#titulo">Título</a>
             <a href="#validacao">Validação</a>
             <a href="#fontes">Fontes</a>
@@ -390,49 +381,34 @@ export default function Page() {
               </h3>
               <div className="row g-3 g-lg-4">
                 <div className="col-lg-6">
-                  <h4 className={s.rioGroup}>
-                    <span className={s.verified}>Verificado</span> na página da instituição
-                  </h4>
-                  {rioCompetitors
-                    .filter((r) => r.verified)
-                    .map((r) => (
-                      <div className={s.rioCard} key={r.name}>
-                        <b>
-                          {r.url ? (
-                            <a href={r.url} target="_blank" rel="noopener noreferrer">
-                              {r.name} <Icon name="arrow" size={14} />
-                            </a>
-                          ) : (
-                            r.name
-                          )}
-                        </b>
-                        <span className={s.rioCourse}>{r.course}</span>
-                        <p>{r.detail}</p>
-                      </div>
-                    ))}
-                </div>
-                <div className="col-lg-6">
-                  <h4 className={s.rioGroup}>
-                    <span className={s.unverified}>Não verificado</span> listados no Educaedu como presenciais no Rio
-                  </h4>
-                  <ul className={s.rioList}>
-                    {rioCompetitors
-                      .filter((r) => !r.verified)
-                      .map((r) => (
-                        <li key={r.name}>
-                          <b>{r.name}</b> · {r.course}
-                          <small>{r.detail}</small>
-                        </li>
-                      ))}
-                  </ul>
-                  <p className={s.rioWarn}>Dados do agregador podem estar desatualizados.</p>
+                  {rioCompetitors.map((r) => (
+                    <div className={s.rioCard} key={r.name}>
+                      <b>
+                        {r.url ? (
+                          <a href={r.url} target="_blank" rel="noopener noreferrer">
+                            {r.name} <Icon name="arrow" size={14} />
+                          </a>
+                        ) : (
+                          r.name
+                        )}
+                      </b>
+                      <span className={s.rioCourse}>{r.course}</span>
+                      <p>{r.detail}</p>
+                    </div>
+                  ))}
                 </div>
               </div>
               <p className={s.conclusion}>
                 <Icon name="star" size={20} />
                 <span>
-                  <b>Nenhuma pós presencial no Rio é específica de Gastroenterologia ou de Nutrição Comportamental.</b> As presenciais são de Nutrição Clínica geral; a única
-                  especializada é a de Terapia Nutricional do IDOR.
+                  <b>Na nossa pesquisa online, não encontramos pós presencial no Rio específica de Gastroenterologia ou de Nutrição Comportamental.</b> Nos 3 cursos foco, o único
+                  concorrente presencial direto que apareceu é a Terapia Nutricional do IDOR. As pós de Nutrição Clínica geral ficaram de fora porque não disputam o mesmo aluno.
+                  <br />
+                  <br />
+                  <small>
+                    Levantamento feito em sites e agregadores em 25/11/2026, vale uma confirmação rápida com as instituições. Nos 3 temas também há boas opções em EAD e
+                    online ao vivo (nas tabelas de cada curso, logo abaixo), e é ali que está boa parte da concorrência.
+                  </small>
                 </span>
               </p>
             </div>
@@ -500,69 +476,6 @@ export default function Page() {
                 </div>
               </article>
             ))}
-          </div>
-        </section>
-
-        {/* RÉGUA DE PREÇO */}
-        <section className={`sec post-bg grain ${s.anchor}`} id="preco">
-          <Botanical className="deco deco--post-r sway" />
-          <div className="container position-relative">
-            <SectionTitle
-              kicker="Régua de preço"
-              title="Quanto o mercado cobra pelo curso inteiro"
-              intro="Valor total do curso, de R$ 0 a R$ 18 mil, por tipo de oferta."
-              light
-            />
-            <div className={s.ruler} data-reveal>
-              {priceBands.map((b) => (
-                <div className={s.rulerRow} key={b.label}>
-                  <div className={s.rulerLabel}>
-                    <b>{b.label}</b>
-                    <span>{b.who}</span>
-                  </div>
-                  <div className={s.rulerTrack}>
-                    <span className={s.rulerZone} style={zoneStyle} aria-hidden="true" />
-                    <span className={`${s.rulerBar} ${s[`band_${b.tone}`]}`} style={bandStyle(b.min, b.max)}>
-                      <em>{b.range}</em>
-                    </span>
-                  </div>
-                </div>
-              ))}
-              <div className={`${s.rulerRow} ${s.rulerNutmed}`}>
-                <div className={s.rulerLabel}>
-                  <b>{nutmedBand.label}</b>
-                  <span>Presencial + ao vivo + gravado, com clínica-escola</span>
-                </div>
-                <div className={s.rulerTrack}>
-                  <span className={s.rulerZone} style={zoneStyle} aria-hidden="true" />
-                  <span className={`${s.rulerBar} ${s.band_nutmed}`} style={bandStyle(nutmedBand.min, nutmedBand.max)}>
-                    <em>{nutmedBand.range}</em>
-                  </span>
-                </div>
-              </div>
-              <div className={s.rulerRow} aria-hidden="true">
-                <div />
-                <div className={s.rulerAxis}>
-                  {[0, 3, 6, 9, 12, 15, 18].map((k) => (
-                    <span key={k} style={{ left: `${(k / 18) * 100}%` }}>
-                      {k === 0 ? "R$ 0" : `${k} mil`}
-                    </span>
-                  ))}
-                </div>
-              </div>
-            </div>
-            <div className="row g-3 g-lg-4 mt-1">
-              <div className="col-lg-7">
-                <p className={s.priceRead} data-reveal>
-                  A NutMed, com presencial, ao vivo e gravado e a clínica-escola, compete na faixa presencial/premium (R$ 8 mil a R$ 16 mil), não com o EAD.
-                </p>
-              </div>
-              <div className="col-lg-5">
-                <p className={s.priceNote} data-reveal>
-                  O valor da Pós em Nutrição de Precisão não é público (é enviado pela equipe), então não está na régua.
-                </p>
-              </div>
-            </div>
           </div>
         </section>
 

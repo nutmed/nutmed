@@ -23,7 +23,7 @@ export const verdicts: Verdict[] = [
       { label: "Busca de curso", value: "150 a 900/mês" },
       { label: "Tendência", value: "Sobe forte (microbiota 25→54)", trend: "up" },
       { label: "Concorrência", value: "Baixa" },
-      { label: "Preço do mercado", value: "R$ 2,6 mil a R$ 18 mil" },
+      { label: "Preço do mercado", value: "R$ 1,3 mil a R$ 18 mil" },
       { label: "Título de especialista", value: "Sim, aberto em 2026", trend: "up" },
     ],
     text: "Menos gente buscando hoje, mas o tema cresce e quase ninguém disputa esse aluno. Melhor custo por aluno esperado.",
@@ -251,7 +251,7 @@ export const sourceGroups: { title: string; items: Source[] }[] = [
       {
         name: "CFN · Consulta Nacional de Nutricionistas e Perfil da Nutrição",
         url: "https://pesquisa.cfn.org.br/",
-        detail: "Nutricionistas inscritos por estado (fev/2024) e formação (pesquisa de 2016, amostra de 1.104 profissionais).",
+        detail: "Nutricionistas inscritos no Brasil (Sistema CFN/CRN, 2026), por estado e formação (pesquisa de 2016, amostra de 1.104 profissionais).",
       },
       {
         name: "DIEESE · Perfil dos Nutricionistas no Brasil (mar/2025)",
@@ -282,17 +282,11 @@ export const sourceGroups: { title: string; items: Source[] }[] = [
         url: "https://querobolsa.com.br/cursos-e-faculdades/terapia-nutricional-enteral-e-parenteral/pos-graduacao",
         detail: "18 instituições.",
       },
-      {
-        name: "Educaedu · Nutrição no Rio de Janeiro",
-        url: "https://www.educaedu-brasil.com/nutricao/rio-de-janeiro",
-        detail: "Pós presenciais listadas no Rio (não verificadas nas páginas próprias).",
-      },
     ],
   },
   {
     title: "Sites oficiais das instituições (consultados em 25/11/2026)",
     items: [
-      { name: "FABA · Faculdade Bezerra de Araújo", url: "https://posgraduacao.faba.edu.br/barra/nutricao-clinica/" },
       { name: "Modulação Intestinal", url: "https://pos.modulacaointestinal.com.br/turmas/11/visualizar" },
       { name: "PUC Minas", url: "https://vemprapuc.pucminas.br/nutricao-e-saude-intestinal-ead-com-aulas-ao-vivo" },
       { name: "iPGS · Gastro e Hepatologia", url: "https://rd.ipgs.com.br/pos-graduacao-nutricao-gastroenterologia-hepatologia" },
@@ -316,10 +310,10 @@ export const sourceGroups: { title: string; items: Source[] }[] = [
 // ---------- Tamanho do mercado ----------
 export const market: { value: string; label: string; detail: string; source: string }[] = [
   {
-    value: "194.018",
+    value: "220.152",
     label: "nutricionistas inscritos no Brasil",
     detail: "Base total da profissão.",
-    source: "CFN, Consulta Nacional de Nutricionistas, fev/2024",
+    source: "Sistema CFN/CRN, 2026",
   },
   {
     value: "15.254",
@@ -351,26 +345,12 @@ export type RioCompetitor = { name: string; course: string; detail: string; url?
 
 export const rioCompetitors: RioCompetitor[] = [
   {
-    name: "FABA · Faculdade Bezerra de Araújo",
-    course: "Pós em Nutrição Clínica",
-    detail:
-      "Polo Barra da Tijuca, híbrida (sábados alternados, 8h às 17h), 400h, 18 meses. R$ 250 de matrícula + 17x R$ 450 (R$ 7.900). Cita assistência hospitalar e modulação intestinal.",
-    url: "https://posgraduacao.faba.edu.br/barra/nutricao-clinica/",
-    verified: true,
-  },
-  {
     name: "IDOR · Rede D'Or",
     course: "Terapia Nutricional",
-    detail: "Híbrido com prática no Copa D'Or e no Copa Star. R$ 16.650.",
+    detail: "Híbrido com prática no Copa D'Or e no Copa Star. R$ 16.650. Concorre direto com a pós em Terapia Nutricional Enteral e Parenteral.",
     url: "https://www.rededorsaoluiz.com.br/instituto/idor/cursos/terapia-nutricional/",
     verified: true,
   },
-  { name: "UNISUAM", course: "Nutrição Clínica com ênfase em obesidade e endocrinologia", detail: "Presencial no Rio.", verified: false },
-  { name: "Faculdades São Camilo", course: "Nutrição Clínica", detail: "Presencial no Rio.", verified: false },
-  { name: "Estácio", course: "Nutrição Clínica e Funcional", detail: "Presencial no Rio.", verified: false },
-  { name: "UFRJ", course: "Especialização em Nutrição", detail: "Presencial no Rio.", verified: false },
-  { name: "UVA", course: "Nutrologia", detail: "Presencial na Tijuca.", verified: false },
-  { name: "PUC-Rio (CCE)", course: "Nutrição Clínica", detail: "A página do curso não abriu para leitura.", verified: false },
 ];
 
 // ---------- Régua de preço (total do curso, R$ 0 a R$ 18 mil) ----------
