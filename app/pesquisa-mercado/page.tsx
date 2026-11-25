@@ -71,11 +71,12 @@ export default function Page() {
       <Reveal />
 
       <header className="lp-header">
-        <div className="container d-flex align-items-center justify-content-between">
+        <div className={`container d-flex align-items-center justify-content-between ${s.headRow}`}>
           <a href="https://nutmed.com.br" aria-label="NutMed, cursos de nutrição" className="lp-logo">
             <Image src="/img/nutmed-logo-light.svg" alt="NutMed" width={112} height={70} priority />
           </a>
           <nav className={s.nav} aria-label="Seções da pesquisa">
+            <a href="#veredito">Veredito</a>
             <a href="#recomendacao">Recomendação</a>
             <a href="#busca">Busca</a>
             <a href="#concorrencia">Concorrência</a>
@@ -88,7 +89,7 @@ export default function Page() {
 
       <main>
         {/* HERO */}
-        <section className={`hero grain ${s.hero}`}>
+        <section className={`hero grain ${s.hero} ${s.anchor}`} id="veredito">
           <Botanical className="deco deco--hero-r sway" />
           <Botanical variant="leaf" className="deco deco--hero-l sway sway--slow" />
           <div className="container position-relative">
@@ -144,7 +145,7 @@ export default function Page() {
         </section>
 
         {/* RECOMENDAÇÃO */}
-        <section className={`sec grain ${s.reco}`} id="recomendacao">
+        <section className={`sec grain ${s.reco} ${s.anchor}`} id="recomendacao">
           <GlassLeaf id="pm-gl1" className={`gl gl--d float float--slow ${s.glDesk}`} />
           <div className="container position-relative">
             <div className="row g-4 g-lg-5 align-items-center">
@@ -188,7 +189,7 @@ export default function Page() {
         </section>
 
         {/* MÉDIA DE BUSCA */}
-        <section className="sec sky grain" id="busca">
+        <section className={`sec sky grain ${s.anchor}`} id="busca">
           <GlassLeaf id="pm-gl2" className={`gl gl--a float ${s.glDesk}`} />
           <GlassLeaf id="pm-gl3" className={`gl gl--c gl--blur float ${s.glDesk}`} />
           <div className="container position-relative">
@@ -320,7 +321,7 @@ export default function Page() {
         </section>
 
         {/* CONCORRÊNCIA */}
-        <section className="sec paper grain" id="concorrencia">
+        <section className={`sec paper grain ${s.anchor}`} id="concorrencia">
           <Botanical variant="rosemary" className="deco deco--paper-l sway sway--slow" />
           <div className="container position-relative">
             <SectionTitle kicker="Concorrência" title="Quem já disputa esses alunos, e por quanto" />
@@ -391,7 +392,7 @@ export default function Page() {
         </section>
 
         {/* VALIDAÇÃO COM A PRÓPRIA BASE */}
-        <section className="sec sky grain" id="validacao">
+        <section className={`sec sky grain ${s.anchor}`} id="validacao">
           <GlassLeaf id="pm-gl4" className={`gl gl--b float float--slow ${s.glDesk}`} />
           <div className="container position-relative">
             <SectionTitle
@@ -416,7 +417,7 @@ export default function Page() {
         </section>
 
         {/* FONTES */}
-        <section className={s.sources} id="fontes">
+        <section className={`${s.sources} ${s.anchor}`} id="fontes">
           <div className="container">
             <h2 className={s.sourcesTitle}>
               <Icon name="file" size={20} /> Fontes
