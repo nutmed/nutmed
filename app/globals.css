@@ -2087,3 +2087,25 @@ a {
     margin-bottom: 2px;
   }
 }
+/* ---------- Modalidades lado a lado (LP com presencial e online) ---------- */
+.format-card {
+  height: 100%;
+  background: #fff;
+  border-radius: var(--nm-radius-lg);
+  padding: 34px 32px 26px;
+  box-shadow: var(--nm-shadow);
+}
+.format-card h3 {
+  font-size: 26px;
+  line-height: 1.25;
+  margin: 18px 0 10px;
+  color: var(--nm-title);
+}
+.format-card > p {
+  color: var(--nm-muted);
+}
+@media (max-width: 575px) {
+  .format-card {
+    padding: 28px 22px 18px;
+  }
+}

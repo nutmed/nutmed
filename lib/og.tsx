@@ -123,14 +123,32 @@ export async function renderOgImage({ kicker, title, highlight, footer, image }:
   );
 }
 
-// O PNG direto do Satori com a foto de fundo passa de 800 KB. Reduzir para 256 cores (paleta) deixa
-// a imagem visualmente igual e abaixo do limite de 300 KB do WhatsApp.
-async function compressPng(image: ImageResponse) {
+// O PNG direto do Satori com a foto de fundo e o grão passa de 800 KB. Em JPEG (qualidade 84) fica
+// visualmente igual e bem abaixo do limite de 300 KB do WhatsApp. O tipo é declarado em OG_CONTENT_TYPE.
+export const OG_CONTENT_TYPE = "image/jpeg";
+
+// Grão de papel (mesma textura das postagens do Instagram): ruído monocromático bem leve por cima de tudo.
+function grainLayer({ width, height }: typeof OG_SIZE, alpha = 22) {
+  const buf = Buffer.alloc(width * height * 4);
+  let seed = 7;
+  for (let i = 0; i < buf.length; i += 4) {
+    seed = (seed * 1103515245 + 12345) & 0x7fffffff;
+    const v = seed & 0xff;
+    buf[i] = buf[i + 1] = buf[i + 2] = v > 127 ? 255 : 0;
+    buf[i + 3] = Math.round((Math.abs(v - 127.5) / 127.5) * alpha);
+  }
+  return sharp(buf, { raw: { width, height, channels: 4 } }).png().toBuffer();
+}
+
+async function compressOg(image: ImageResponse) {
   const raw = Buffer.from(await image.arrayBuffer());
-  const png = await sharp(raw).png({ palette: true, colors: 256, dither: 0.5, compressionLevel: 9, effort: 10 }).toBuffer();
-  return new Response(new Uint8Array(png), { headers: { "Content-Type": "image/png" } });
+  const jpg = await sharp(raw)
+    .composite([{ input: await grainLayer(OG_SIZE) }])
+    .jpeg({ quality: 84, mozjpeg: true, chromaSubsampling: "4:4:4" })
+    .toBuffer();
+  return new Response(new Uint8Array(jpg), { headers: { "Content-Type": OG_CONTENT_TYPE } });
 }
 
 export async function courseOgImage(course: Course) {
-  return compressPng(await renderOgImage(ogTextFromCourse(course)));
+  return compressOg(await renderOgImage(ogTextFromCourse(course)));
 }
