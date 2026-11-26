@@ -11,7 +11,7 @@ export const posNutricaoClinica: Course = {
   theme: "clinical",
   startLabel: "fevereiro (online)",
   ctaImage: "/img/turma-evento-provisoria.jpg",
-  rdConversionId: "Pós Nutrição Clínica Ambulatorial e Hospitalar",
+  rdConversionId: "lp-pos-nutricao-clinica",
   seo: {
     title: "Pós em Nutrição Clínica Ambulatorial e Hospitalar | NutMed",
     description:

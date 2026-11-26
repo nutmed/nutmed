@@ -40,7 +40,7 @@ Sem `RD_STATION_API_KEY`, o formulário funciona normalmente e o lead só não �
 
 ## Integrações
 
-**RD Station Marketing.** O formulário envia para `/api/lead`, que chama `POST https://api.rd.services/platform/conversions` com a chave pública em `RD_STATION_API_KEY`. Cada LP usa seu próprio `conversion_identifier` (ex.: `lp-pos-nutricao-de-precisao-2027`) e envia nome, e-mail, celular (+55), tags (`lp`, slug do curso, `perfil-<nutricionista|formando|estudante>`), consentimento LGPD e UTMs.
+**RD Station Marketing.** O formulário envia para `/api/lead`, que chama `POST https://api.rd.services/platform/conversions` com a chave pública em `RD_STATION_API_KEY`. Cada LP usa seu próprio `conversion_identifier` (ex.: `lp-pos-nutricao-de-precisao`, sem ano, para ser reaproveitado entre turmas) e envia nome, e-mail, celular (+55), tags (`lp`, slug do curso, `perfil-<nutricionista|formando|estudante>`), consentimento LGPD e UTMs.
 
 **Google Tag Manager.** Definido por `NEXT_PUBLIC_GTM_ID`. Depois de um envio aceito, o formulário faz:
 
