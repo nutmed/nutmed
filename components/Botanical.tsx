@@ -1,9 +1,43 @@
 // Ramos de ervas em traço fino, usados como elementos que "vazam" das margens.
 // Puramente decorativos (aria-hidden) e animados de leve com CSS (balanço).
+// Com theme="clinical" (LPs de clínica/hospital) cada ramo vira um objeto de saúde no mesmo traço:
+// sprig → estetoscópio, leaf → coração com batimento, rosemary → soro.
 
-type Props = { className?: string; variant?: "sprig" | "leaf" | "rosemary" };
+type Props = { className?: string; variant?: "sprig" | "leaf" | "rosemary"; theme?: "herbs" | "clinical" };
 
-export default function Botanical({ className = "", variant = "sprig" }: Props) {
+export default function Botanical({ className = "", variant = "sprig", theme = "herbs" }: Props) {
+  if (theme === "clinical") {
+    if (variant === "leaf") {
+      return (
+        <svg className={`botanical ${className}`} viewBox="0 0 200 260" fill="none" aria-hidden="true">
+          <path d="M100 220C40 170 20 130 20 95 20 60 45 40 72 40c16 0 26 10 28 20 2-10 12-20 28-20 27 0 52 20 52 55 0 35-20 75-80 125Z" />
+          <path d="M8 132h52l14-30 18 62 18-86 14 54h68" />
+        </svg>
+      );
+    }
+    if (variant === "rosemary") {
+      return (
+        <svg className={`botanical ${className}`} viewBox="0 0 120 320" fill="none" aria-hidden="true">
+          <path d="M60 4v10" />
+          <rect x="28" y="14" width="64" height="92" rx="16" />
+          <path d="M40 46h40M40 64h28" />
+          <path d="M60 106v20" />
+          <rect x="50" y="126" width="20" height="36" rx="6" />
+          <path d="M60 162c0 50-36 80-8 150" />
+        </svg>
+      );
+    }
+    return (
+      <svg className={`botanical ${className}`} viewBox="0 0 260 340" fill="none" aria-hidden="true">
+        <circle cx="70" cy="18" r="7" />
+        <circle cx="150" cy="18" r="7" />
+        <path d="M70 25c-8 60 0 110 40 128M150 25c8 60 0 110-40 128" />
+        <path d="M110 153c0 70 40 90 80 112" />
+        <circle cx="200" cy="292" r="34" />
+        <circle cx="200" cy="292" r="16" />
+      </svg>
+    );
+  }
   if (variant === "leaf") {
     return (
       <svg className={`botanical ${className}`} viewBox="0 0 200 260" fill="none" aria-hidden="true">

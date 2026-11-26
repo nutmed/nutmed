@@ -7,7 +7,7 @@ export const posNutricaoDePrecisao: Course = {
   slug: "pos-nutricao-de-precisao",
   startLabel: "13 de março",
   ctaImage: "/img/turma-evento-provisoria.jpg",
-  rdConversionId: "lp-pos-nutricao-de-precisao-2027",
+  rdConversionId: "Pós Nutrição de Precisão Funcional e Fitoterapia",
   seo: {
     title: "Pós em Nutrição de Precisão Funcional e Fitoterapia | NutMed",
     description:
@@ -30,6 +30,7 @@ export const posNutricaoDePrecisao: Course = {
     ticket: { label: "Descontos especiais", text: "Condição de Black válida até 30/11" },
     formNote: "Receba a grade completa, os valores e a condição especial da Black NutMed para a Turma 2027.",
   },
+  cta: { pill: "Pós-graduação presencial", title: "Nutrição de Precisão", highlight: "Funcional e Fitoterapia" },
   hero: {
     eyebrow: "Pós-graduação · Turma 2027",
     title: "Pós em Nutrição de Precisão",
@@ -77,6 +78,7 @@ export const posNutricaoDePrecisao: Course = {
     kicker: "Resolução CFN 680/2021",
     title: "Prescreva fitoterápicos sem precisar do título ASBRAN",
     text: "Pela resolução do CFN, nutricionistas com pós-graduação que tenham pelo menos 200h de fitoterapia podem prescrever fitoterápicos em todas as formas farmacêuticas. Esta pós cobre toda a carga horária e os parâmetros curriculares exigidos.",
+    stat: { value: "200h+", label: "de fitoterapia na grade" },
   },
   modules: {
     title: "O que você vai aprender",
