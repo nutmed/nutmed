@@ -1,13 +1,8 @@
 import type { MetadataRoute } from "next";
 import { SITE_URL } from "@/lib/site";
-import { posNutricaoDePrecisao } from "@/content/pos-nutricao-de-precisao";
-import { posNutricaoClinica } from "@/content/pos-nutricao-clinica";
-import { posNutricaoEsportiva } from "@/content/pos-nutricao-esportiva";
-import { posNutricaoMaternoInfantil } from "@/content/pos-nutricao-materno-infantil";
+import { courses } from "@/lib/courses";
 
-// Uma entrada por LP. Ao criar uma LP nova, inclua o curso aqui.
-const courses = [posNutricaoDePrecisao, posNutricaoClinica, posNutricaoEsportiva, posNutricaoMaternoInfantil];
-
+// Uma entrada por LP (lista em lib/courses.ts).
 export default function sitemap(): MetadataRoute.Sitemap {
   return courses.map((c) => ({
     url: `${SITE_URL}/${c.slug}`,

@@ -27,14 +27,14 @@ Sem `RD_STATION_API_KEY`, o formulário funciona normalmente e o lead só não �
 ### Nova LP
 
 1. Copie `content/pos-nutricao-de-precisao.ts` para `content/<novo-slug>.ts` e troque o conteúdo (inclusive `rdConversionId`, `seo` e `og`).
-2. Copie `app/pos-nutricao-de-precisao/` para `app/<novo-slug>/` (com `page.tsx` **e** `opengraph-image.tsx`) e aponte os imports para o novo conteúdo.
+2. Copie `app/pos-nutricao-de-precisao/` para `app/<novo-slug>/` (só o `page.tsx`), aponte os imports para o novo conteúdo e inclua o curso em `lib/courses.ts`.
 3. Inclua o novo curso na lista de `app/sitemap.ts`.
 
 **Open Graph é obrigatório em toda LP** (é o que aparece quando o link é compartilhado no WhatsApp e nas redes sociais em geral):
 
 - `page.tsx` usa `export const metadata = buildCourseMetadata(course)` (`lib/metadata.ts`).
-- `opengraph-image.tsx` chama `courseOgImage(course)` (`lib/og.tsx`). Ele gera um PNG 1200x630 com logo, nome do curso e destaque, tudo centralizado.
-- Antes de subir, abra `/<novo-slug>/opengraph-image` e confira a imagem e o título. Veja o checklist completo em `CLAUDE.md`.
+- A imagem de compartilhamento sai em `/og/<novo-slug>.jpg` (`app/og/[file]/route.ts` chama `courseOgImage(course)` de `lib/og.tsx`): JPEG 1200x630 com logo, nome do curso e destaque, tudo centralizado.
+- Antes de subir, abra `/og/<novo-slug>.jpg` e confira a imagem e o título. Veja o checklist completo em `CLAUDE.md`.
 
 **Favicon:** todas as LPs usam o favicon oficial da NutMed (elipse lilás/violeta com "NutMed", igual ao nutmed.com.br), servido por `app/icon.svg` e `app/apple-icon.png`. Não adicione outro favicon por LP.
 

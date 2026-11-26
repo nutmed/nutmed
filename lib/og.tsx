@@ -5,7 +5,7 @@ import sharp from "sharp";
 import type { Course } from "@/content/types";
 
 // Imagem de compartilhamento (Open Graph) padrão das LPs: 1200x630, usada no WhatsApp, Instagram, Facebook e LinkedIn.
-// REGRA: toda LP tem app/<slug>/opengraph-image.tsx chamando courseOgImage(course). Ver CLAUDE.md.
+// REGRA: a imagem de cada LP sai em /og/<slug>.jpg (app/og/[file]/route.ts) via courseOgImage(course). Ver CLAUDE.md.
 export const OG_SIZE = { width: 1200, height: 630 };
 
 async function dataUri(publicPath: string, mime: string) {

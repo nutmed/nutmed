@@ -4,7 +4,7 @@ import { buildCourseMetadata } from "@/lib/metadata";
 import { ORGANIZATION, SITE_URL } from "@/lib/site";
 import { posNutricaoDePrecisao as course } from "@/content/pos-nutricao-de-precisao";
 
-// Título, descrição, canonical, Open Graph e Twitter. A imagem vem de ./opengraph-image.tsx.
+// Título, descrição, canonical, Open Graph e Twitter. A imagem é /og/<slug>.jpg (lib/courses.ts).
 export const metadata = buildCourseMetadata(course);
 
 // Dados estruturados (schema.org) para o Google entender que a página é um curso.
