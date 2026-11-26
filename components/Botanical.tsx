@@ -5,10 +5,42 @@
 
 // Com theme="sport" (Nutrição Esportiva): sprig → cronômetro, leaf → tênis de corrida, rosemary → squeeze.
 // Com theme="maternal" (Nutrição Materno-Infantil): sprig → mamadeira, leaf → chupeta, rosemary → chocalho.
+// Com theme="onco" (Nutrição em Oncologia): sprig → laço da conscientização com um broto, leaf → mãos acolhendo
+// um coração, rosemary → hélice de DNA.
 
-type Props = { className?: string; variant?: "sprig" | "leaf" | "rosemary"; theme?: "herbs" | "clinical" | "sport" | "maternal" };
+type Props = { className?: string; variant?: "sprig" | "leaf" | "rosemary"; theme?: "herbs" | "clinical" | "sport" | "maternal" | "onco" };
 
 export default function Botanical({ className = "", variant = "sprig", theme = "herbs" }: Props) {
+  if (theme === "onco") {
+    if (variant === "leaf") {
+      return (
+        <svg className={`botanical ${className}`} viewBox="0 0 200 260" fill="none" aria-hidden="true">
+          <path d="M100 136c-30-20-44-38-44-56a22 22 0 0 1 44-8 22 22 0 0 1 44 8c0 18-14 36-44 56Z" />
+          <path d="M18 128c4 50 38 86 82 92M182 128c-4 50-38 86-82 92" />
+          <path d="M18 128c0-10 12-14 18-4l18 34M182 128c0-10-12-14-18-4l-18 34" />
+          <path d="M46 206l-14 46M154 206l14 46" />
+          <path d="M100 36v-20M74 44 64 28M126 44l10-16" />
+        </svg>
+      );
+    }
+    if (variant === "rosemary") {
+      return (
+        <svg className={`botanical ${className}`} viewBox="0 0 120 320" fill="none" aria-hidden="true">
+          <path d="M24 10C24 40 96 40 96 70S24 100 24 130s72 30 72 60-72 30-72 60 72 30 72 60" />
+          <path d="M96 10C96 40 24 40 24 70s72 30 72 60-72 30-72 60 72 30 72 60-72 30-72 60" />
+          <path d="M34 70h52M44 56h32M44 84h32M34 130h52M44 116h32M44 144h32M34 190h52M44 176h32M44 204h32M34 250h52M44 236h32M44 264h32" />
+        </svg>
+      );
+    }
+    return (
+      <svg className={`botanical ${className}`} viewBox="0 0 260 340" fill="none" aria-hidden="true">
+        <path d="M130 196c-36-40-52-68-52-94a52 52 0 0 1 104 0c0 26-16 54-52 94Z" />
+        <path d="M130 170c-22-26-30-44-30-62a30 30 0 0 1 60 0c0 18-8 36-30 62Z" />
+        <path d="M156 156 64 318l22-8 10 24 86-150M104 156l92 162-22-8-10 24-86-150" />
+        <path d="M130 50V22M130 34c-10-10-24-12-32-8 6 10 20 14 32 8ZM130 28c8-12 22-16 32-12-6 12-20 16-32 12Z" />
+      </svg>
+    );
+  }
   if (theme === "maternal") {
     if (variant === "leaf") {
       return (

@@ -8,6 +8,7 @@ export type ModuleGroup = { icon?: IconName; title: string; summary: string; ite
 export type Feature = { icon: IconName; title: string; text: string; image?: string };
 
 export type IconName =
+  | "ribbon"
   | "calendar"
   | "clock"
   | "book"
@@ -51,8 +52,9 @@ export type Course = {
    * "clinical": estetoscópio, coração com batimento e soro em traço fino, cruz e coração de vidro.
    * "sport": cronômetro, tênis de corrida e squeeze em traço fino, halter e raio de vidro.
    * "maternal": mamadeira, chupeta e chocalho em traço fino, coração e gota de leite de vidro.
+   * "onco": laço da conscientização, mãos acolhendo um coração e hélice de DNA em traço fino, laço e coração de vidro.
    */
-  theme?: "herbs" | "clinical" | "sport" | "maternal";
+  theme?: "herbs" | "clinical" | "sport" | "maternal" | "onco";
   /** Data de início para o selo de vidro do CTA final, ex.: "13 de março" */
   startLabel?: string;
   /** Foto de fundo (desfocada) do CTA final */

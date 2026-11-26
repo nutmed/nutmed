@@ -2,10 +2,11 @@
 // Decorativa (aria-hidden); flutua devagar com CSS. Cada instância precisa de um id próprio para o degradê.
 
 // shape="dumbbell" e shape="bolt" são as versões do esporte (halter e raio de energia).
+// shape="ribbon" (laço da conscientização) é a versão da oncologia, alternando com o coração.
 // shape="drop" (gota de leite) é a versão do materno-infantil, alternando com o coração.
 // shape="cross" e shape="heart" são as versões de saúde (cruz e coração com batimento) para LPs clínicas.
 
-export default function GlassLeaf({ id, className = "", shape = "leaf" }: { id: string; className?: string; shape?: "leaf" | "cross" | "heart" | "dumbbell" | "bolt" | "drop" }) {
+export default function GlassLeaf({ id, className = "", shape = "leaf" }: { id: string; className?: string; shape?: "leaf" | "cross" | "heart" | "dumbbell" | "bolt" | "drop" | "ribbon" }) {
   return (
     <svg className={`glass-leaf ${className}`} viewBox="0 0 120 160" aria-hidden="true">
       <defs>
@@ -38,6 +39,20 @@ export default function GlassLeaf({ id, className = "", shape = "leaf" }: { id: 
           <ellipse cx="18" cy="66" rx="4" ry="12" fill="#fff" opacity=".4" />
           <ellipse cx="94" cy="66" rx="4" ry="12" fill="#fff" opacity=".4" />
         </g>
+      )}
+      {shape === "ribbon" && (
+        <>
+          <path d="M70 78 26 150l14-5 6 13 42-70Z" fill={`url(#${id}-f)`} stroke={`url(#${id}-s)`} strokeWidth="2.5" strokeLinejoin="round" />
+          <path d="M50 78l44 72-14-5-6 13-42-70Z" fill={`url(#${id}-f)`} stroke={`url(#${id}-s)`} strokeWidth="2.5" strokeLinejoin="round" />
+          <path
+            fillRule="evenodd"
+            d="M60 6C36 6 24 22 24 40c0 18 12 38 36 66 24-28 36-48 36-66C96 22 84 6 60 6Zm0 16c-11 0-18 8-18 18 0 10 6 22 18 38 12-16 18-28 18-38 0-10-7-18-18-18Z"
+            fill={`url(#${id}-f)`}
+            stroke={`url(#${id}-s)`}
+            strokeWidth="2.5"
+          />
+          <ellipse cx="34" cy="36" rx="4" ry="12" fill="#fff" opacity=".4" transform="rotate(-18 34 36)" />
+        </>
       )}
       {shape === "drop" && (
         <>

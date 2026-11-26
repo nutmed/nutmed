@@ -58,8 +58,9 @@ export default function CourseLanding({ course, campaign, showPending = false }:
   const clinical = theme === "clinical";
   const sport = theme === "sport";
   const maternal = theme === "maternal";
+  const onco = theme === "onco";
   const glass = (i: number) =>
-    clinical ? (i % 2 ? "heart" : "cross") : sport ? (i % 2 ? "bolt" : "dumbbell") : maternal ? (i % 2 ? "drop" : "heart") : "leaf";
+    clinical ? (i % 2 ? "heart" : "cross") : sport ? (i % 2 ? "bolt" : "dumbbell") : maternal ? (i % 2 ? "drop" : "heart") : onco ? (i % 2 ? "heart" : "ribbon") : "leaf";
 
   return (
     <>
@@ -190,7 +191,7 @@ export default function CourseLanding({ course, campaign, showPending = false }:
                   {course.topics!.map((t) => (
                     <span key={t} className="marquee__item">
                       {t}
-                      <Icon name={clinical ? "pulse" : sport ? "bolt" : maternal ? "heart" : "leaf"} size={18} />
+                      <Icon name={clinical ? "pulse" : sport ? "bolt" : maternal ? "heart" : onco ? "ribbon" : "leaf"} size={18} />
                     </span>
                   ))}
                 </span>
