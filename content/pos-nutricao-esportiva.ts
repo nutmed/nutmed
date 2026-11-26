@@ -56,8 +56,8 @@ export const posNutricaoEsportiva: Course = {
       { icon: "bolt", label: "Força, endurance e alto rendimento" },
     ],
     seals: ["Reconhecida pelo MEC"],
-    image: "/img/esportiva-hidratacao.jpg",
-    imageAlt: "Atleta se hidratando durante o treino ao ar livre",
+    image: "/img/esportiva-corrida.jpg",
+    imageAlt: "Corredora sorrindo durante o treino ao ar livre",
   },
   stats: [
     { value: "2", label: "modalidades à sua escolha" },
