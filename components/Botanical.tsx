@@ -4,10 +4,48 @@
 // sprig → estetoscópio, leaf → coração com batimento, rosemary → soro.
 
 // Com theme="sport" (Nutrição Esportiva): sprig → cronômetro, leaf → tênis de corrida, rosemary → squeeze.
+// Com theme="maternal" (Nutrição Materno-Infantil): sprig → mamadeira, leaf → chupeta, rosemary → chocalho.
 
-type Props = { className?: string; variant?: "sprig" | "leaf" | "rosemary"; theme?: "herbs" | "clinical" | "sport" };
+type Props = { className?: string; variant?: "sprig" | "leaf" | "rosemary"; theme?: "herbs" | "clinical" | "sport" | "maternal" };
 
 export default function Botanical({ className = "", variant = "sprig", theme = "herbs" }: Props) {
+  if (theme === "maternal") {
+    if (variant === "leaf") {
+      return (
+        <svg className={`botanical ${className}`} viewBox="0 0 200 260" fill="none" aria-hidden="true">
+          <path d="M100 30c-22 0-36 18-36 40 0 16 8 30 22 38v10h28v-10c14-8 22-22 22-38 0-22-14-40-36-40Z" />
+          <path d="M40 118h120c10 0 16 8 14 18l-6 26c-2 8-10 14-18 14H50c-8 0-16-6-18-14l-6-26c-2-10 4-18 14-18Z" />
+          <circle cx="100" cy="196" r="38" />
+          <circle cx="100" cy="196" r="20" />
+          <path d="M70 147h60" />
+        </svg>
+      );
+    }
+    if (variant === "rosemary") {
+      return (
+        <svg className={`botanical ${className}`} viewBox="0 0 120 320" fill="none" aria-hidden="true">
+          <circle cx="60" cy="58" r="46" />
+          <circle cx="60" cy="58" r="30" />
+          <circle cx="44" cy="44" r="4" />
+          <circle cx="76" cy="50" r="4" />
+          <circle cx="58" cy="76" r="4" />
+          <path d="M52 104v8h16v-8" />
+          <rect x="48" y="112" width="24" height="18" rx="8" />
+          <path d="M54 130v150M66 130v150" />
+          <rect x="40" y="280" width="40" height="30" rx="14" />
+        </svg>
+      );
+    }
+    return (
+      <svg className={`botanical ${className}`} viewBox="0 0 260 340" fill="none" aria-hidden="true">
+        <path d="M130 8c-12 0-18 10-18 22v22h36V30c0-12-6-22-18-22Z" />
+        <rect x="92" y="52" width="76" height="26" rx="10" />
+        <path d="M98 78h64c10 0 18 8 18 18v204c0 16-12 28-28 28h-44c-16 0-28-12-28-28V96c0-10 8-18 18-18Z" />
+        <path d="M80 140h20M80 180h28M80 220h20M80 260h28" />
+        <path d="M120 236c18 0 32-10 40-24" />
+      </svg>
+    );
+  }
   if (theme === "sport") {
     if (variant === "leaf") {
       return (

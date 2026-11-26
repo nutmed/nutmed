@@ -30,7 +30,8 @@ export type IconName =
   | "whatsapp"
   | "globe"
   | "pulse"
-  | "bolt";
+  | "bolt"
+  | "heart";
 
 export type Campaign = {
   /** Vira tag no RD Station e parâmetro no dataLayer, ex.: "black-nutmed-2026" */
@@ -49,8 +50,9 @@ export type Course = {
    * Tema dos elementos decorativos. "herbs" (padrão): ramos de ervas e folhas de vidro.
    * "clinical": estetoscópio, coração com batimento e soro em traço fino, cruz e coração de vidro.
    * "sport": cronômetro, tênis de corrida e squeeze em traço fino, halter e raio de vidro.
+   * "maternal": mamadeira, chupeta e chocalho em traço fino, coração e gota de leite de vidro.
    */
-  theme?: "herbs" | "clinical" | "sport";
+  theme?: "herbs" | "clinical" | "sport" | "maternal";
   /** Data de início para o selo de vidro do CTA final, ex.: "13 de março" */
   startLabel?: string;
   /** Foto de fundo (desfocada) do CTA final */
@@ -76,6 +78,8 @@ export type Course = {
   badge?: { ring: string; strong: string; text: string; label: string } | false;
   /** Título da seção de diferenciais. */
   featuresTitle?: string;
+  /** Mostra todos os diferenciais como cards iguais lado a lado (4 em linha no desktop). */
+  featuresGrid?: boolean;
   /** Círculo de vidro do CTA final: tipo de pós e nome curto do curso. */
   cta?: { pill: string; title: string; highlight: string };
   hero: {

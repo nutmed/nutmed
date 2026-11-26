@@ -2,9 +2,10 @@
 // Decorativa (aria-hidden); flutua devagar com CSS. Cada instância precisa de um id próprio para o degradê.
 
 // shape="dumbbell" e shape="bolt" são as versões do esporte (halter e raio de energia).
+// shape="drop" (gota de leite) é a versão do materno-infantil, alternando com o coração.
 // shape="cross" e shape="heart" são as versões de saúde (cruz e coração com batimento) para LPs clínicas.
 
-export default function GlassLeaf({ id, className = "", shape = "leaf" }: { id: string; className?: string; shape?: "leaf" | "cross" | "heart" | "dumbbell" | "bolt" }) {
+export default function GlassLeaf({ id, className = "", shape = "leaf" }: { id: string; className?: string; shape?: "leaf" | "cross" | "heart" | "dumbbell" | "bolt" | "drop" }) {
   return (
     <svg className={`glass-leaf ${className}`} viewBox="0 0 120 160" aria-hidden="true">
       <defs>
@@ -37,6 +38,12 @@ export default function GlassLeaf({ id, className = "", shape = "leaf" }: { id: 
           <ellipse cx="18" cy="66" rx="4" ry="12" fill="#fff" opacity=".4" />
           <ellipse cx="94" cy="66" rx="4" ry="12" fill="#fff" opacity=".4" />
         </g>
+      )}
+      {shape === "drop" && (
+        <>
+          <path d="M60 8C40 44 18 70 18 100a42 42 0 0 0 84 0C102 70 80 44 60 8Z" fill={`url(#${id}-f)`} stroke={`url(#${id}-s)`} strokeWidth="2.5" />
+          <ellipse cx="42" cy="96" rx="6" ry="16" fill="#fff" opacity=".35" transform="rotate(12 42 96)" />
+        </>
       )}
       {shape === "bolt" && (
         <>

@@ -3,9 +3,10 @@ import { SITE_URL } from "@/lib/site";
 import { posNutricaoDePrecisao } from "@/content/pos-nutricao-de-precisao";
 import { posNutricaoClinica } from "@/content/pos-nutricao-clinica";
 import { posNutricaoEsportiva } from "@/content/pos-nutricao-esportiva";
+import { posNutricaoMaternoInfantil } from "@/content/pos-nutricao-materno-infantil";
 
 // Uma entrada por LP. Ao criar uma LP nova, inclua o curso aqui.
-const courses = [posNutricaoDePrecisao, posNutricaoClinica, posNutricaoEsportiva];
+const courses = [posNutricaoDePrecisao, posNutricaoClinica, posNutricaoEsportiva, posNutricaoMaternoInfantil];
 
 export default function sitemap(): MetadataRoute.Sitemap {
   return courses.map((c) => ({

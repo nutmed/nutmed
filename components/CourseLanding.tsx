@@ -57,7 +57,9 @@ export default function CourseLanding({ course, campaign, showPending = false }:
   const theme = course.theme ?? "herbs";
   const clinical = theme === "clinical";
   const sport = theme === "sport";
-  const glass = (i: number) => (clinical ? (i % 2 ? "heart" : "cross") : sport ? (i % 2 ? "bolt" : "dumbbell") : "leaf");
+  const maternal = theme === "maternal";
+  const glass = (i: number) =>
+    clinical ? (i % 2 ? "heart" : "cross") : sport ? (i % 2 ? "bolt" : "dumbbell") : maternal ? (i % 2 ? "drop" : "heart") : "leaf";
 
   return (
     <>
@@ -188,7 +190,7 @@ export default function CourseLanding({ course, campaign, showPending = false }:
                   {course.topics!.map((t) => (
                     <span key={t} className="marquee__item">
                       {t}
-                      <Icon name={clinical ? "pulse" : sport ? "bolt" : "leaf"} size={18} />
+                      <Icon name={clinical ? "pulse" : sport ? "bolt" : maternal ? "heart" : "leaf"} size={18} />
                     </span>
                   ))}
                 </span>
@@ -307,7 +309,7 @@ export default function CourseLanding({ course, campaign, showPending = false }:
           <Botanical theme={theme} className="deco deco--post-r sway" />
           <div className="container position-relative">
             <SectionTitle kicker="Diferenciais" title={course.featuresTitle ?? "Prática de verdade, do primeiro ao último encontro"} light />
-            {featured && (
+            {featured && !course.featuresGrid && (
               <div className="glass-card feature-card" data-reveal>
                 <div className="glass-card__text">
                   <span className="feature-icon">
@@ -324,8 +326,8 @@ export default function CourseLanding({ course, campaign, showPending = false }:
               </div>
             )}
             <div className="row g-4 mt-1 scroll-row">
-              {features.map((f) => (
-                <div className="col-md-4" key={f.title}>
+              {(course.featuresGrid ? course.features : features).map((f) => (
+                <div className={course.featuresGrid ? "col-md-6 col-lg-3" : "col-md-4"} key={f.title}>
                   <div className="glass-card glass-card--small" data-reveal>
                     <span className="feature-icon">
                       <Icon name={f.icon} size={24} />
