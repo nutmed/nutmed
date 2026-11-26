@@ -41,6 +41,8 @@ export const posNutricaoOncologia: Course = {
     text: "escolhe",
     label: "Presencial ou online: você escolhe",
   },
+  // Selo embaixo do card: no canto de cima ele cobria o rosto da paciente na foto.
+  badgePosition: "bottom",
   featuresTitle: "Docentes que estão no INCA e nos centros de referência",
   featuresGrid: true,
   cta: { pill: "Presencial ou online", title: "Nutrição", highlight: "em Oncologia" },

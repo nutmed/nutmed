@@ -103,7 +103,7 @@ export default function CourseLanding({ course, campaign, showPending = false }:
                   {" " + (course.hero.modality?.after ?? "em 1")}
                 </p>
 
-                <div className="hero-card-wrap rise" style={{ animationDelay: ".15s" }}>
+                <div className={`hero-card-wrap rise${course.badgePosition === "bottom" ? " hero-card-wrap--badge-bottom" : ""}`} style={{ animationDelay: ".15s" }}>
                 <div className="glass-card hero-card">
                   <div className="glass-card__text">
                     <h1>

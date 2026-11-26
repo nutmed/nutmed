@@ -78,6 +78,8 @@ export type Course = {
    * `false` esconde o selo.
    */
   badge?: { ring: string; strong: string; text: string; label: string } | false;
+  /** Onde o selo giratório fica no card do hero. "bottom" o leva para o canto de baixo, quando a foto tem um rosto no canto de cima. */
+  badgePosition?: "top" | "bottom";
   /** Título da seção de diferenciais. */
   featuresTitle?: string;
   /** Mostra todos os diferenciais como cards iguais lado a lado (4 em linha no desktop). */

@@ -1898,6 +1898,13 @@ a {
   right: -28px;
   z-index: 2;
 }
+.hero-card-wrap--badge-bottom {
+  margin-bottom: 48px;
+}
+.hero-card-wrap--badge-bottom .practice-badge {
+  top: auto;
+  bottom: -44px;
+}
 .hero-badges {
   justify-content: center;
   margin-top: 4px;
@@ -1919,6 +1926,15 @@ a {
     height: 88px;
     top: -42px;
     right: -6px;
+  }
+  .hero-card-wrap--badge-bottom {
+    margin-bottom: 68px;
+  }
+  .hero-card-wrap--badge-bottom .practice-badge {
+    top: auto;
+    bottom: -58px;
+    right: auto;
+    left: -6px;
   }
   .hero-badges {
     border-radius: 16px;
