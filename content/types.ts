@@ -29,7 +29,8 @@ export type IconName =
   | "phone"
   | "whatsapp"
   | "globe"
-  | "pulse";
+  | "pulse"
+  | "bolt";
 
 export type Campaign = {
   /** Vira tag no RD Station e parâmetro no dataLayer, ex.: "black-nutmed-2026" */
@@ -47,8 +48,9 @@ export type Course = {
   /**
    * Tema dos elementos decorativos. "herbs" (padrão): ramos de ervas e folhas de vidro.
    * "clinical": estetoscópio, coração com batimento e soro em traço fino, cruz e coração de vidro.
+   * "sport": cronômetro, tênis de corrida e squeeze em traço fino, halter e raio de vidro.
    */
-  theme?: "herbs" | "clinical";
+  theme?: "herbs" | "clinical" | "sport";
   /** Data de início para o selo de vidro do CTA final, ex.: "13 de março" */
   startLabel?: string;
   /** Foto de fundo (desfocada) do CTA final */

@@ -56,7 +56,8 @@ export default function CourseLanding({ course, campaign, showPending = false }:
   // Tema dos enfeites: ervas (padrão) ou objetos de saúde para cursos de clínica/hospital.
   const theme = course.theme ?? "herbs";
   const clinical = theme === "clinical";
-  const glass = (i: number) => (clinical ? (i % 2 ? "heart" : "cross") : "leaf");
+  const sport = theme === "sport";
+  const glass = (i: number) => (clinical ? (i % 2 ? "heart" : "cross") : sport ? (i % 2 ? "bolt" : "dumbbell") : "leaf");
 
   return (
     <>
@@ -187,7 +188,7 @@ export default function CourseLanding({ course, campaign, showPending = false }:
                   {course.topics!.map((t) => (
                     <span key={t} className="marquee__item">
                       {t}
-                      <Icon name={clinical ? "pulse" : "leaf"} size={18} />
+                      <Icon name={clinical ? "pulse" : sport ? "bolt" : "leaf"} size={18} />
                     </span>
                   ))}
                 </span>

@@ -7,7 +7,7 @@ export const posNutricaoDePrecisao: Course = {
   slug: "pos-nutricao-de-precisao",
   startLabel: "13 de março",
   ctaImage: "/img/turma-evento-provisoria.jpg",
-  rdConversionId: "lp-pos-nutricao-de-precisao",
+  rdConversionId: "Pós Nutrição de Precisão Funcional e Fitoterapia",
   seo: {
     title: "Pós em Nutrição de Precisão Funcional e Fitoterapia | NutMed",
     description:

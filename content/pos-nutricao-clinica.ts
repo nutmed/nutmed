@@ -11,7 +11,7 @@ export const posNutricaoClinica: Course = {
   theme: "clinical",
   startLabel: "fevereiro (online)",
   ctaImage: "/img/turma-evento-provisoria.jpg",
-  rdConversionId: "lp-pos-nutricao-clinica",
+  rdConversionId: "Pós Nutrição Clínica Ambulatorial e Hospitalar",
   seo: {
     title: "Pós em Nutrição Clínica Ambulatorial e Hospitalar | NutMed",
     description:
@@ -173,7 +173,7 @@ export const posNutricaoClinica: Course = {
         text: "Aulas presenciais no Centro do Rio, transmitidas ao vivo e gravadas durante toda a pós.",
         facts: [
           "460h em 36 encontros quinzenais",
-          "Turmas de semana ou de sábado, das 8h30 às 17h30",
+          "Turmas às quartas-feiras ou aos sábados, das 8h30 às 17h30",
           "Atendimento a pacientes reais com supervisão de docente",
           "Laboratório de Técnica Dietética e apostilas impressas",
         ],
@@ -221,7 +221,7 @@ export const posNutricaoClinica: Course = {
     { icon: "globe", title: "Online" },
   ],
   pendingNotes: [
-    "Presencial: data de início da turma 2027, dias (semana/sábado) e se a grade de 460h segue igual com o nome novo",
+    "Presencial: data de início da turma 2027 (dias confirmados: quarta-feira ou sábado)",
     "Nome oficial e grade: o site ainda mostra 'Nutrição Clínica e Metabolismo'; confirmar se a grade mudou com o nome",
     "Duração: online 16 a 18 meses, presencial 15 a 18 meses (site diverge)",
     "Fotos originais (as atuais são provisórias)",
