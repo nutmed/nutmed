@@ -1,9 +1,10 @@
 // Folha "de vidro" em 3D, inspirada nos símbolos de % em vidro dos posts da NutMed.
 // Decorativa (aria-hidden); flutua devagar com CSS. Cada instância precisa de um id próprio para o degradê.
 
+// shape="dumbbell" e shape="bolt" são as versões do esporte (halter e raio de energia).
 // shape="cross" e shape="heart" são as versões de saúde (cruz e coração com batimento) para LPs clínicas.
 
-export default function GlassLeaf({ id, className = "", shape = "leaf" }: { id: string; className?: string; shape?: "leaf" | "cross" | "heart" }) {
+export default function GlassLeaf({ id, className = "", shape = "leaf" }: { id: string; className?: string; shape?: "leaf" | "cross" | "heart" | "dumbbell" | "bolt" }) {
   return (
     <svg className={`glass-leaf ${className}`} viewBox="0 0 120 160" aria-hidden="true">
       <defs>
@@ -26,6 +27,21 @@ export default function GlassLeaf({ id, className = "", shape = "leaf" }: { id: 
             strokeWidth="2.5"
           />
           <ellipse cx="52" cy="52" rx="6" ry="14" fill="#fff" opacity=".35" transform="rotate(20 52 52)" />
+        </>
+      )}
+      {shape === "dumbbell" && (
+        <g transform="rotate(-30 60 80)">
+          <rect x="34" y="72" width="52" height="16" rx="6" fill={`url(#${id}-f)`} stroke={`url(#${id}-s)`} strokeWidth="2.5" />
+          <rect x="8" y="46" width="28" height="68" rx="10" fill={`url(#${id}-f)`} stroke={`url(#${id}-s)`} strokeWidth="2.5" />
+          <rect x="84" y="46" width="28" height="68" rx="10" fill={`url(#${id}-f)`} stroke={`url(#${id}-s)`} strokeWidth="2.5" />
+          <ellipse cx="18" cy="66" rx="4" ry="12" fill="#fff" opacity=".4" />
+          <ellipse cx="94" cy="66" rx="4" ry="12" fill="#fff" opacity=".4" />
+        </g>
+      )}
+      {shape === "bolt" && (
+        <>
+          <path d="M74 6 18 94h38l-14 60 62-92H66l8-56Z" fill={`url(#${id}-f)`} stroke={`url(#${id}-s)`} strokeWidth="2.5" strokeLinejoin="round" />
+          <ellipse cx="54" cy="44" rx="5" ry="16" fill="#fff" opacity=".35" transform="rotate(32 54 44)" />
         </>
       )}
       {shape === "heart" && (

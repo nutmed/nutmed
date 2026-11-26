@@ -3,9 +3,45 @@
 // Com theme="clinical" (LPs de clínica/hospital) cada ramo vira um objeto de saúde no mesmo traço:
 // sprig → estetoscópio, leaf → coração com batimento, rosemary → soro.
 
-type Props = { className?: string; variant?: "sprig" | "leaf" | "rosemary"; theme?: "herbs" | "clinical" };
+// Com theme="sport" (Nutrição Esportiva): sprig → cronômetro, leaf → tênis de corrida, rosemary → squeeze.
+
+type Props = { className?: string; variant?: "sprig" | "leaf" | "rosemary"; theme?: "herbs" | "clinical" | "sport" };
 
 export default function Botanical({ className = "", variant = "sprig", theme = "herbs" }: Props) {
+  if (theme === "sport") {
+    if (variant === "leaf") {
+      return (
+        <svg className={`botanical ${className}`} viewBox="0 0 200 260" fill="none" aria-hidden="true">
+          <path d="M24 196h146c14 0 22-10 18-22l-5-12c-4-9-13-14-25-16l-38-8-24-32c-5-6-13-8-20-4l-30 17c-12 7-20 19-22 33Z" />
+          <path d="M22 180h166M60 196v-16M100 196v-16M140 196v-16" />
+          <path d="M92 118l14 9M101 107l14 9M110 97l13 9" />
+          <path d="M8 114h40M0 136h30M14 92h28" />
+        </svg>
+      );
+    }
+    if (variant === "rosemary") {
+      return (
+        <svg className={`botanical ${className}`} viewBox="0 0 120 320" fill="none" aria-hidden="true">
+          <path d="M66 4c-4 10-6 18-6 28" />
+          <rect x="42" y="32" width="36" height="22" rx="6" />
+          <path d="M32 62h56c7 0 12 5 12 12v214c0 12-9 22-21 22H41c-12 0-21-10-21-22V74c0-7 5-12 12-12Z" />
+          <path d="M20 132c28 10 52 10 80 0M20 214c28 10 52 10 80 0" />
+          <path d="M60 160c-8 12-12 20-12 26a12 12 0 0 0 24 0c0-6-4-14-12-26Z" />
+        </svg>
+      );
+    }
+    return (
+      <svg className={`botanical ${className}`} viewBox="0 0 260 340" fill="none" aria-hidden="true">
+        <circle cx="130" cy="200" r="100" />
+        <circle cx="130" cy="200" r="82" />
+        <rect x="112" y="62" width="36" height="22" rx="6" />
+        <path d="M130 84v16M204 118l16-16M212 94l16 16" />
+        <path d="M130 200v-62M130 200l40 26" />
+        <path d="M130 126v10M130 264v10M56 200h10M194 200h10" />
+        <circle cx="130" cy="200" r="6" />
+      </svg>
+    );
+  }
   if (theme === "clinical") {
     if (variant === "leaf") {
       return (
