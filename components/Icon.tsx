@@ -79,6 +79,7 @@ const paths: Record<IconName, React.ReactNode> = {
       <path d="M9 8.3c-.4 2.9 3.4 6.8 6.5 6.4l.9-1.3-2-1.1-.9.7a4.6 4.6 0 0 1-2.3-2.3l.7-.9-1-2.1L9 8.3Z" />
     </>
   ),
+  pulse: <path d="M3 12h4l2-5 4 10 2-5h6" />,
   globe: (
     <>
       <circle cx="12" cy="12" r="9" />
